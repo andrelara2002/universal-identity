@@ -8,16 +8,17 @@ import { useSelector } from "react-redux";
 export default function HomeController() {
   const [loading, setLoading] = React.useState(true);
   const state = useSelector(state => state.app);
+  const colors = useSelector(state => state.colors);
 
   React.useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 200);
   });
 
   if (loading) {
     return <Loading visible={loading} />;
   }
 
-  return <HomeView loading={loading} state= {state} />;
+  return <HomeView loading={loading} state={state} colors={colors} />;
 }
