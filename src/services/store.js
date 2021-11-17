@@ -3,6 +3,7 @@ import { createStore } from "redux";
 const initialState = {
   app: {
     name: "",
+    token: "",
     cpf: "",
     email: "",
     rank: 0,
