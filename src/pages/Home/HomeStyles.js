@@ -2,8 +2,12 @@ import { StyleSheet } from "react-native";
 
 import { getColors } from "../../util/CustomHooks";
 
-export default function HomeStyles() {
-  const { background, card, text, subtext } = getColors();
+export default function HomeStyles(imageBorder) {
+  const colors = getColors();
+
+  const border = colors.tiers[imageBorder.toLowerCase()];
+
+  const { background, card, text, subtext } = colors;
 
   const styles = StyleSheet.create({
     container: {
@@ -25,14 +29,18 @@ export default function HomeStyles() {
       width: 100,
       height: 100,
       borderRadius: 50,
-      marginBottom: 10
+      marginBottom: 10,
+      borderWidth: 2,
+      borderColor: border
     },
     replacedImage: {
       width: 100,
       height: 100,
       borderRadius: 50,
       backgroundColor: "#000",
-      marginBottom: 10
+      marginBottom: 10,
+      borderWidth: 2,
+      borderColor: border
     }
   });
 

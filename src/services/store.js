@@ -22,10 +22,10 @@ const initialState = {
       declined: "#FF4343"
     },
     tiers: {
-      excelent: "#FEB700",
-      great: "#00B2FE",
-      good: "#00FE66",
-      bad: "#FF4343"
+      "excelent": "#FEB700",
+      "great": "#00B2FE",
+      "good": "#00FE66",
+      "bad": "#FF4343"
     }
   }
 };

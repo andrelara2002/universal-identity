@@ -1,12 +1,18 @@
 import React from "react";
-
-import { View, Text, Image } from "react-native";
+//Native Components
+import { View, Text, Image, FlatList } from "react-native";
+//Custom Components
 import HomeStyles from "./HomeStyles";
+import ProfissionalCard from "../../components/profissionalCard/ProfissionalCard";
+import Spacer from "../../components/spacer/Spacer";
+//Functions and Hooks
+import { getSaudation } from "../../util/InterfaceInfo";
 
 export default function HomeView(props) {
-  const { image } = props;
+  const { image, borderImage } = props;
 
-  const styles = HomeStyles();
+  const styles = HomeStyles(borderImage);
+  const history = [];
 
   const mountImage = () => {
     if (image) {
@@ -16,12 +22,31 @@ export default function HomeView(props) {
     }
   };
 
+  const changeHistory = () => {
+    if (history.length > 0) {
+      return (
+        <FlatList
+          data={history}
+          renderItem={({ item }) =>
+            <Text>
+              {item}
+            </Text>}
+        />
+      );
+    } else {
+      return <Text>Ainda nenhum histórico</Text>;
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View>
         {mountImage()}
-        <Text style={styles.saudation}>Bom dia</Text>
+        <Text style={styles.saudation}>{getSaudation()}</Text>
         <Text style={styles.name}>Bartolomeu!</Text>
+        <ProfissionalCard rate={4.5} hours={20} streak={"2 Weeks"} />
+        <Spacer size={20} />
+        {changeHistory()}
       </View>
     </View>
   );
