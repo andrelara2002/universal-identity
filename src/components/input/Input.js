@@ -2,8 +2,15 @@ import React from "react";
 
 import { TextInput, StyleSheet } from "react-native";
 import { getColors } from "../../util/CustomHooks";
+import MaskInput from "react-native-mask-input";
 
-export function Input({ onChangeText, value, secureTextEntry, placeholder }) {
+export function Input({
+  onChangeText,
+  value,
+  secureTextEntry,
+  placeholder,
+  mask
+}) {
   const { card } = getColors();
 
   const styles = StyleSheet.create({
@@ -20,12 +27,13 @@ export function Input({ onChangeText, value, secureTextEntry, placeholder }) {
     }
   });
   return (
-    <TextInput
+    <MaskInput
       value={value}
-      onChangeText={onChangeText}
+      onChangeText={(masked, unmasked) => onChangeText(masked)}
       style={styles.Input}
       secureTextEntry={secureTextEntry}
       placeholder={placeholder}
+      mask={mask}
     />
   );
 }

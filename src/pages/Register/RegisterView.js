@@ -15,6 +15,47 @@ export default function RegisterView(props) {
   const { getImageFromGallery, image, onSubmit } = props;
   const colors = getColors();
   const styles = RegisterStyles(colors);
+  const [documentTypeMask, setDocumentTypeMask] = React.useState("");
+  const [documentMask, setDocumentMask] = React.useState(true);
+
+  const handleDocumentType = text => {
+    props.setDocumentType(text);
+    switch (text) {
+      case "CPF":
+        setDocumentTypeMask([
+          /\d/,
+          /\d/,
+          /\d/,
+          ".",
+          /\d/,
+          /\d/,
+          /\d/,
+          ".",
+          /\d/,
+          /\d/,
+          /\d/,
+          "-",
+          /\d/,
+          /\d/
+        ]);
+      case "RG":
+        setDocumentTypeMask([
+          /\d/,
+          /\d/,
+          /\d/,
+          /\d/,
+          /\d/,
+          /\d/,
+          "-",
+          /\d/,
+          /\d/,
+          /\d/
+        ]);
+      case "Passport":
+        setDocumentMask(false);
+    }
+    console.log(documentTypeMask);
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -43,6 +84,7 @@ export default function RegisterView(props) {
         <InputWithSubText
           value={props.birthDate}
           subText={"Birth Date"}
+          mask={[/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
           size={"48%"}
           onChangeText={props.setBirthDate}
         />
@@ -51,30 +93,36 @@ export default function RegisterView(props) {
           subText={"Gender"}
           size={"48%"}
           onChangeText={props.setGender}
+          picker={true}
+          pickerData={["Male", "Female"]}
         />
       </View>
       <InputWithSubText
         value={props.documentNumber}
         subText={"Document Number"}
         onChangeText={props.setDocumentNumber}
+        mask={documentTypeMask}
       />
       <View style={styles.dividedView}>
         <InputWithSubText
           value={props.documentType}
           subText={"Document Type"}
-          onChangeText={props.setDocumentType}
+          onChangeText={x => handleDocumentType(x)}
+          picker={true}
+          pickerData={["CPF", "RG", "Passport"]}
           size={"45%"}
         />
         <InputWithSubText
           value={props.emissionDate}
           subText={"Emission Date"}
           onChangeText={props.setEmissionDate}
+          mask={[/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
           size={"45%"}
         />
       </View>
       <Divisor height={50} />
       <Button text={"Register"} onPress={onSubmit} />
-      {Dimensions.get("window").height > 700 ? <Spacer size={50}/> : <View />}
+      {Dimensions.get("window").height > 700 ? <Spacer size={50} /> : <View />}
     </ScrollView>
   );
 }

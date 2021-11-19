@@ -64,7 +64,7 @@ export default function RegisterController(props) {
       documentNumber={documentNumber}
       setDocumentNumber={setDocumentNumber}
       documentType={documentType}
-      setDocumenttype={setDocumentType}
+      setDocumentType={setDocumentType}
       emissionDate={emissionDate}
       setEmissionDate={setEmissionDate}
       image={image}

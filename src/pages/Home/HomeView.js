@@ -5,6 +5,7 @@ import { View, Text, Image, FlatList } from "react-native";
 import HomeStyles from "./HomeStyles";
 import ProfissionalCard from "../../components/profissionalCard/ProfissionalCard";
 import Spacer from "../../components/spacer/Spacer";
+
 //Functions and Hooks
 import { getSaudation } from "../../util/InterfaceInfo";
 
