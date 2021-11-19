@@ -12,14 +12,15 @@ const initialState = {
   language: "en_US",
   colors: {
     background: "#ffffff",
-    card: "#FCFCFC",
+    card: "#FAFAFA",
     text: "#313131",
-    subtext: "#989898",
+    subtext: "#DBD7D7",
     accent: "#00A8FF",
     buttons: {
-      normal: "#00B2FE",
+      normal: "#313131",
       deactivated: "#DBD7D7",
-      declined: "#FF4343"
+      declined: "#FF4343",
+      text: "#ffffff"
     },
     tiers: {
       "excelent": "#FEB700",

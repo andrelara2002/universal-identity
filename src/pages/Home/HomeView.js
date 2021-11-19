@@ -40,9 +40,12 @@ export default function HomeView(props) {
 
   return (
     <View style={styles.container}>
+      <Spacer size={20} />
       <View>
         {mountImage()}
-        <Text style={styles.saudation}>{getSaudation()}</Text>
+        <Text style={styles.saudation}>
+          {getSaudation()}
+        </Text>
         <Text style={styles.name}>Bartolomeu!</Text>
         <ProfissionalCard rate={4.5} hours={20} streak={"2 Weeks"} />
         <Spacer size={20} />
