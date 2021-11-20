@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 //Default Components
-import { View, ScrollView, Dimensions, Image } from "react-native";
+import { View, ScrollView, Dimensions, Image, Pressable, TouchableOpacity,Modal, Text } from "react-native";
 import InputWithSubText from "../../components/inputWithSubText/InputWithSubText";
 import Spacer from "../../components/spacer/Spacer";
 import DocumentsStyles from "./DocumentsStyles";
@@ -11,6 +11,7 @@ export default function DocumentsView(props) {
   const { getImageFromGallery, image, onSubmit } = props;
   const colors = getColors();
   const styles = DocumentsStyles(colors);
+  const [modalVisible, setModalVisible] = React.useState(false);
 
   const onChangeForm = (value) => {
       props.onChangeForm({...props.form, ...value})
@@ -18,19 +19,21 @@ export default function DocumentsView(props) {
 
   return (
     <ScrollView style={styles.container}>
-      <View>
 
+      <View>
           <View style={styles.containerImage}>
-              <Image
-                  style={styles.qrCode}
-                  source={{
-                      uri: `data:image/png;base64,${props.form.qrCode}`,
-                  }}
-              />
+              <TouchableOpacity onPress={() => setModalVisible(true)}>
+                  <Image
+                      style={styles.qrCode}
+                      source={{
+                          uri: `data:image/png;base64,${props.form.qrCode}`,
+                      }}
+                  />
+              </TouchableOpacity>
           </View>
 
           <InputWithSubText
-            subText={"ID"}
+            subText={"Unified ID"}
             disabled={true}
             value={props.form.id}
             onChangeText={(value) => onChangeForm({id: value}) }
@@ -86,7 +89,40 @@ export default function DocumentsView(props) {
               />
           </View>
       </View>
-      {Dimensions.get("window").height > 700 ? <Spacer size={50} /> : <View />}
+
+        <Modal
+            animationType="slide"
+            transparent={true}
+            presentationStyle={'fullScreen'}
+            visible={modalVisible}
+            onRequestClose={() => {
+                setModalVisible(!modalVisible);
+            }}
+        >
+            <View style={styles.viewModal}>
+                <View style={styles.viewContentModal}>
+                    <Pressable
+                        style={styles.viewContentModal}
+                        onPress={() => setModalVisible(!modalVisible)}
+                    >
+                        <Image
+                            style={styles.qrCodeModal}
+                            source={{
+                                uri: `data:image/png;base64,${props.form.qrCode}`,
+                            }}
+                        />
+                        <InputWithSubText
+                            subText={"Unified ID"}
+                            disabled={true}
+                            value={props.form.id}
+                            onChangeText={(value) => onChangeForm({id: value}) }
+                        />
+                    </Pressable>
+                </View>
+            </View>
+        </Modal>
+
+        {Dimensions.get("window").height > 700 ? <Spacer size={50} /> : <View />}
     </ScrollView>
   );
 }

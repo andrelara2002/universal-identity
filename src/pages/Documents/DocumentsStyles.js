@@ -15,6 +15,24 @@ export default function DocumentsStyles(colors) {
       flexWrap: "wrap",
       gap: '12px'
     },
+    viewContentModal: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center"
+    },
+    viewModal: {
+      display: "flex",
+      height: "100%",
+      width: "100%",
+      backgroundColor: "rgba(4,4,4, 0.40)",
+      justifyContent: "center",
+      alignItems: "center"
+    },
+    qrCodeModal: {
+      width: '220px',
+      height: '220px',
+      borderRadius: '10px'
+    },
     qrCode: {
       width: '120px',
       height: '120px'
