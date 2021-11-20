@@ -16,7 +16,8 @@ export default function InputWithSubText({
   placeholder,
   mask,
   picker,
-  pickerData
+  pickerData,
+  disabled = false
 }) {
   const { card, text } = getColors();
 
@@ -44,6 +45,7 @@ export default function InputWithSubText({
       return (
         <Picker
           selectedValue={value}
+          disabled={disabled}
           onValueChange={onChangeText}
           style={styles.Picker}
         >
@@ -57,6 +59,7 @@ export default function InputWithSubText({
         <Input
           mask={mask}
           value={value}
+          disabled={disabled}
           onChangeText={onChangeText}
           secureTextEntry={
             subText.toLowerCase() == "password" ? true : secureTextEntry

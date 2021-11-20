@@ -54,7 +54,6 @@ const api = axios.create({
           return Promise.resolve(config)
         })
         .catch(error => {
-          console.log(error)
           return Promise.resolve(config)
         })
     },

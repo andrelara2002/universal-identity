@@ -2,6 +2,9 @@ import React from "react";
 
 import LoginView from "./LoginView";
 import Loading from "../../components/loading/Loading";
+import api from '../../services/api'
+import Toast from 'react-native-toast-message';
+import {setTokenAsync} from "../../services/storage";
 
 export default function LoginControler(props) {
   const [username, setUsername] = React.useState("");
@@ -9,10 +12,24 @@ export default function LoginControler(props) {
 
   const [loading, setLoading] = React.useState(true);
 
-  const autenticate = async () => {
-    setLoading(true);
-    props.navigation.navigate("Home");
-    setLoading(false);
+  const autenticate = () => {
+          return api.post('/login', {
+              email: username,
+              senha: password
+            })
+          .then( (response) => {
+              setTokenAsync({token: response.data.token});
+              props.navigation.navigate("Home");
+          })
+          .catch( () => {
+              Toast.show({
+                  type: 'error',
+                  text1: 'Not Authorized',
+              });
+          })
+          .finally(() => {
+              setLoading(false);
+          })
   };
 
   React.useEffect(() => {

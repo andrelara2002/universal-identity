@@ -9,7 +9,8 @@ export function Input({
   value,
   secureTextEntry,
   placeholder,
-  mask
+  mask,
+  disabled = false
 }) {
   const { card } = getColors();
 
@@ -28,6 +29,7 @@ export function Input({
   });
   return (
     <MaskInput
+      disabled={disabled}
       value={value}
       onChangeText={(masked, unmasked) => onChangeText(masked)}
       style={styles.Input}
