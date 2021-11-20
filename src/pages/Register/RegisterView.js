@@ -14,14 +14,11 @@ import ImageButton from "../../components/imageButton/ImageButton";
 import { getColors } from "../../util/CustomHooks";
 
 export default function RegisterView(props) {
-  const { getImageFromGallery, image, onSubmit, modalVisible,  errorMessage} = props;
+  const { getImageFromGallery, image, onSubmit, modalVisible, errorMessage } = props;
   const colors = getColors();
   const styles = RegisterStyles(colors);
   const [documentTypeMask, setDocumentTypeMask] = React.useState("");
   const [documentMask, setDocumentMask] = React.useState(true);
-
- // modalVisible={modalVisible}
- // errorMessage={errorMessage}
 
   const handleDocumentType = text => {
     props.setDocumentType(text);
@@ -43,6 +40,7 @@ export default function RegisterView(props) {
           /\d/,
           /\d/
         ]);
+        break;
       case "RG":
         setDocumentTypeMask([
           /\d/,
@@ -56,8 +54,11 @@ export default function RegisterView(props) {
           /\d/,
           /\d/
         ]);
+        break;
+      default:
       case "Passport":
         setDocumentMask(false);
+        break;
     }
     console.log(documentTypeMask);
   };
@@ -68,7 +69,7 @@ export default function RegisterView(props) {
         animationType="slide"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => {          
+        onRequestClose={() => {
           props.setModalVisible(!modalVisible);
         }}>
         <View style={styles.centeredView}>
@@ -77,7 +78,7 @@ export default function RegisterView(props) {
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => props.setModalVisible(!modalVisible)}>
-              <Text style={styles.textStyle}>Ok</Text>
+              <Text style={styles.textStyle}> Ok </Text>
             </Pressable>
           </View>
         </View>
@@ -133,7 +134,7 @@ export default function RegisterView(props) {
           subText={"Document Type"}
           onChangeText={x => handleDocumentType(x)}
           picker={true}
-          pickerData={["Others", "RG", "CPF", "CNH","Passport"]}
+          pickerData={["Others", "RG", "CPF", "CNH", "Passport"]}
           size={"45%"}
         />
         <InputWithSubText
