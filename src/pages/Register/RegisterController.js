@@ -2,8 +2,11 @@ import React from "react";
 
 import RegisterView from "./RegisterView";
 import { Platform } from "react-native";
+import Loading from "../../components/loading/Loading";
 
 import * as ImagePicker from "expo-image-picker";
+
+import api from '../../services/api'
 
 export default function RegisterController(props) {
   const [name, setName] = React.useState("");
@@ -15,6 +18,8 @@ export default function RegisterController(props) {
   const [documentType, setDocumentType] = React.useState("");
   const [emissionDate, setEmissionDate] = React.useState("");
   const [image, setImage] = React.useState(null);
+
+  const [loading, setLoading] = React.useState(true);
 
   const getImageFromGallery = async () => {
     try {
@@ -48,6 +53,64 @@ export default function RegisterController(props) {
     }
   };
 
+  async function handleSignUp() {
+
+    try {
+      setLoading(true);
+      let genderInt = 0;
+      if (gender == 'Female') {
+        genderInt = 1;
+      } else if (gender == 'Male') {
+        genderInt = 2;
+      }
+
+      let documentTypeInt = 0;
+      if (documentType == 'RG') {
+        documentTypeInt = 1;
+      } else if (documentType == 'CPF') {
+        documentTypeInt = 2;
+      } else if (documentType == 'CNH') {
+        documentTypeInt = 3;
+      } else if (documentType == 'Passport') {
+        documentTypeInt = 4;
+      }
+
+      const data = {
+        'nome': name,
+        'dataNascimento': birthDate,
+        'genero': genderInt,
+        'documentoNumero': documentNumber,
+        'documentoTipo': documentTypeInt,
+        'documentoDataEmissao': emissionDate,
+        'email': email,
+        'senha': password,
+        'imagemPerfilBase64': "string"
+      }
+
+      console.log(data);
+
+      const loginResponse = await api.post('/login/create', data)
+        .catch(function (error) {
+          return error.response;
+        });
+
+      console.log(loginResponse.data)
+      props.navigation.goBack();
+    } catch (err) {
+      console.log(err)
+    }
+    setLoading(false);
+  }
+
+  React.useEffect(() => {
+    setLoading(false);
+  });
+
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <RegisterView
       getImageFromGallery={getImageFromGallery}
@@ -68,7 +131,7 @@ export default function RegisterController(props) {
       emissionDate={emissionDate}
       setEmissionDate={setEmissionDate}
       image={image}
-      onSubmit={console.log(name)}
+      onSubmit={handleSignUp}
     />
   );
 }

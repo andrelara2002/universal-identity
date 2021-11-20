@@ -94,7 +94,7 @@ export default function RegisterView(props) {
           size={"48%"}
           onChangeText={props.setGender}
           picker={true}
-          pickerData={["Male", "Female"]}
+          pickerData={["Others", "Male", "Female"]}
         />
       </View>
       <InputWithSubText
@@ -109,7 +109,7 @@ export default function RegisterView(props) {
           subText={"Document Type"}
           onChangeText={x => handleDocumentType(x)}
           picker={true}
-          pickerData={["CPF", "RG", "Passport"]}
+          pickerData={["Others", "RG", "CPF", "CNH","Passport"]}
           size={"45%"}
         />
         <InputWithSubText
