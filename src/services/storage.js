@@ -35,6 +35,24 @@ export async function setUserAsync(user) {
   }
 }
 
+
+//credentials data
+export async function getCredentialsAsync() {
+  try {
+      return JSON.parse(await AsyncStorage.getItem('credentials'));
+  } catch (e) {
+      throw e;
+  }
+}
+
+export async function setCredentialsAsync(credentials) {
+  try {
+      return await AsyncStorage.setItem('credentials', JSON.stringify(credentials));
+  } catch (e) {
+      throw e;
+  }
+}
+
 export async function deleteStorageAsync() {
   try {
     return await AsyncStorage.clear();

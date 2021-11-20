@@ -4,7 +4,7 @@ import LoginView from "./LoginView";
 import Loading from "../../components/loading/Loading";
 import api from '../../services/api'
 import Toast from 'react-native-toast-message';
-import { setTokenAsync } from "../../services/storage";
+import { setTokenAsync, getTokenAsync, setCredentialsAsync, getCredentialsAsync } from "../../services/storage";
 
 export default function LoginControler(props) {
   const [username, setUsername] = React.useState("");
@@ -18,7 +18,14 @@ export default function LoginControler(props) {
       senha: password
     })
       .then((response) => {
+
         setTokenAsync({ token: response.data.token });
+
+        setCredentialsAsync({
+          email: username,
+          senha: password
+        });
+
         props.navigation.navigate("Home");
       })
       .catch((error) => {
@@ -34,8 +41,27 @@ export default function LoginControler(props) {
       })
   };
 
+  // async function refreshToken() {
+  //   const credentials = await getCredentials();
+
+  //   if (credentials) {
+  //     const loginResponse = await api.post('/login', credentials)
+  //     await storeUserToken(loginResponse.data);
+  //   }
+  // }
+
   React.useEffect(() => {
-    setLoading(false);
+    async function handleUserNextScreen() {
+      const userToken = await getTokenAsync();
+      if (userToken) {
+        props.navigation.navigate("Home");
+        //await refreshToken();
+      } else {
+        setLoading(false);
+      }
+    }
+    handleUserNextScreen();
+    //setLoading(false);
   });
 
   if (loading) {

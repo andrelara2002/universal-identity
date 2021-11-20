@@ -42,8 +42,6 @@ export default function LoginView({
       
       {!!errorMessage && <Error errorMessage={errorMessage} />}
 
-      <Error errorMessage={errorMessage} />
-
       <InputWithSubText
         subText={"Email"}
         value={username}
