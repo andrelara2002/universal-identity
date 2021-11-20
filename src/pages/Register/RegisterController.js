@@ -7,6 +7,7 @@ import Loading from "../../components/loading/Loading";
 import * as ImagePicker from "expo-image-picker";
 
 import api from '../../services/api'
+import moment from "moment";
 
 export default function RegisterController(props) {
   const [name, setName] = React.useState("");
@@ -75,13 +76,19 @@ export default function RegisterController(props) {
         documentTypeInt = 4;
       }
 
+      var birthDatePtBR = moment(birthDate, "DD/MM/YYYY");
+      var birthDateEnUS =  birthDatePtBR.format("YYYY-MM-DD");
+
+      var emissionDatePtBR = moment(emissionDate, "DD/MM/YYYY");
+      var emissionDateEnUS = emissionDatePtBR.format("YYYY-MM-DD");
+
       const data = {
         'nome': name,
-        'dataNascimento': birthDate,
+        'dataNascimento': birthDateEnUS,
         'genero': genderInt,
         'documentoNumero': documentNumber,
         'documentoTipo': documentTypeInt,
-        'documentoDataEmissao': emissionDate,
+        'documentoDataEmissao': emissionDateEnUS,
         'email': email,
         'senha': password,
         'imagemPerfilBase64': "string"
