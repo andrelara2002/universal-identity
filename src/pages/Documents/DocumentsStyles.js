@@ -15,6 +15,16 @@ export default function DocumentsStyles(colors) {
       flexWrap: "wrap",
       gap: '12px'
     },
+    qrCode: {
+      width: '120px',
+      height: '120px'
+    },
+    containerImage: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
     dividedView: {
       flexDirection: "row",
       justifyContent: "space-between",

@@ -16,7 +16,8 @@ export default function DocumentsController(props) {
     checkDate:"",
     emissionDate: "",
     birthDate: "",
-    gender: ""
+    gender: "",
+    qrCode: ""
   })
   const [image, setImage] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
@@ -26,7 +27,7 @@ export default function DocumentsController(props) {
     setLoading(true);
     api.get('/Pessoa')
         .then((response) => {
-          const {id, nome,dataNascimento, genero, documentoNumero,  documentoDataEmissao,} = response.data.data;
+          const {id, nome,dataNascimento, genero, documentoNumero,  documentoDataEmissao, universalIdBase64} = response.data.data;
           const gender = ["Others", "Male", "Female"];
           setDocumentForms({
             id: id,
@@ -36,7 +37,8 @@ export default function DocumentsController(props) {
             checkDate:"",
             emissionDate: moment(new Date(documentoDataEmissao)).format("DD/MM/YYYY"),
             birthDate: moment(new Date(dataNascimento)).format("DD/MM/YYYY"),
-            gender: gender[parseInt(genero)]
+            gender: gender[parseInt(genero)],
+            qrCode: universalIdBase64,
           })
         })
         .catch(() => {
@@ -91,12 +93,15 @@ export default function DocumentsController(props) {
   }
 
   return (
-    <DocumentsView
-      getImageFromGallery={getImageFromGallery}
-      form={documentsForm}
-      onChangeForm={setDocumentForms}
-      image={image}
-      onSubmit={() => console.log('teste ok')}
-    />
-  );
+      <>
+        <DocumentsView
+            getImageFromGallery={getImageFromGallery}
+            form={documentsForm}
+            onChangeForm={setDocumentForms}
+            image={image}
+            onSubmit={() => console.log('teste ok')}
+        />
+
+      </>
+   );
 }

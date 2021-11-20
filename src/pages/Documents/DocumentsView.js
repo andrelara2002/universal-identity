@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 //Default Components
-import { View, ScrollView, Dimensions } from "react-native";
+import { View, ScrollView, Dimensions, Image } from "react-native";
 import InputWithSubText from "../../components/inputWithSubText/InputWithSubText";
 import Spacer from "../../components/spacer/Spacer";
 import DocumentsStyles from "./DocumentsStyles";
@@ -19,6 +19,15 @@ export default function DocumentsView(props) {
   return (
     <ScrollView style={styles.container}>
       <View>
+
+          <View style={styles.containerImage}>
+              <Image
+                  style={styles.qrCode}
+                  source={{
+                      uri: `data:image/png;base64,${props.form.qrCode}`,
+                  }}
+              />
+          </View>
 
           <InputWithSubText
             subText={"ID"}
