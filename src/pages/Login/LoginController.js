@@ -4,32 +4,34 @@ import LoginView from "./LoginView";
 import Loading from "../../components/loading/Loading";
 import api from '../../services/api'
 import Toast from 'react-native-toast-message';
-import {setTokenAsync} from "../../services/storage";
+import { setTokenAsync } from "../../services/storage";
 
 export default function LoginControler(props) {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
-
   const [loading, setLoading] = React.useState(true);
+  const [errorMessage, setErrorMessage] = React.useState(null);
 
   const autenticate = () => {
-          return api.post('/login', {
-              email: username,
-              senha: password
-            })
-          .then( (response) => {
-              setTokenAsync({token: response.data.token});
-              props.navigation.navigate("Home");
-          })
-          .catch( () => {
-              Toast.show({
-                  type: 'error',
-                  text1: 'Not Authorized',
-              });
-          })
-          .finally(() => {
-              setLoading(false);
-          })
+    return api.post('/login', {
+      email: username,
+      senha: password
+    })
+      .then((response) => {
+        setTokenAsync({ token: response.data.token });
+        props.navigation.navigate("Home");
+      })
+      .catch((error) => {
+        setErrorMessage('Usuário ou senha inválidos.')
+        console.log(error.response.data.errors.join("\r\n"))
+        Toast.show({
+          type: 'error',
+          text1: 'Not Authorized',
+        });
+      })
+      .finally(() => {
+        setLoading(false);
+      })
   };
 
   React.useEffect(() => {
@@ -49,6 +51,7 @@ export default function LoginControler(props) {
       password={password}
       setPassword={setPassword}
       navigation={props.navigation}
+      errorMessage={errorMessage}
       onSubmit={autenticate}
     />
   );

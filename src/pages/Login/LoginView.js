@@ -7,6 +7,7 @@ import Button from "../../components/button/Button";
 import Divisor from "../../components/divisor/Divisor";
 import HeadLine from "../../components/headLine/HeadLine";
 import SubText from "../../components/subText/SubText";
+import Error from '../../components/Error/Error';
 //Functions and Hooks
 import LoginStyles from "./LoginStyles";
 import { getColors } from "../../util/CustomHooks";
@@ -22,7 +23,8 @@ export default function LoginView({
   onSubmit,
   navigation,
   text,
-  subText
+  subText,
+  errorMessage
 }) {
   const colors = getColors();
   const styles = LoginStyles(colors);
@@ -36,7 +38,12 @@ export default function LoginView({
       <Image source={waves} style={styles.waves} />
       <SubText text={subText} size={26} />
       <HeadLine multiline={true} text={text} />
-      <Spacer size={80} />
+      <Spacer size={errorMessage ? 51 : 80} />
+      
+      {!!errorMessage && <Error errorMessage={errorMessage} />}
+
+      <Error errorMessage={errorMessage} />
+
       <InputWithSubText
         subText={"Email"}
         value={username}
