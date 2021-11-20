@@ -1,6 +1,8 @@
 import React from "react";
 //Default Components
 import { View, ScrollView, Dimensions } from "react-native";
+import { Alert, Modal, StyleSheet, Text, Pressable } from 'react-native';
+
 //Custom Components
 import InputWithSubText from "../../components/inputWithSubText/InputWithSubText";
 import Spacer from "../../components/spacer/Spacer";
@@ -12,11 +14,14 @@ import ImageButton from "../../components/imageButton/ImageButton";
 import { getColors } from "../../util/CustomHooks";
 
 export default function RegisterView(props) {
-  const { getImageFromGallery, image, onSubmit } = props;
+  const { getImageFromGallery, image, onSubmit, modalVisible,  errorMessage} = props;
   const colors = getColors();
   const styles = RegisterStyles(colors);
   const [documentTypeMask, setDocumentTypeMask] = React.useState("");
   const [documentMask, setDocumentMask] = React.useState(true);
+
+ // modalVisible={modalVisible}
+ // errorMessage={errorMessage}
 
   const handleDocumentType = text => {
     props.setDocumentType(text);
@@ -59,6 +64,25 @@ export default function RegisterView(props) {
 
   return (
     <ScrollView style={styles.container}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {          
+          props.setModalVisible(!modalVisible);
+        }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>{errorMessage}</Text>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => props.setModalVisible(!modalVisible)}>
+              <Text style={styles.textStyle}>Ok</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+
       <ImageButton
         source={image ? image.uri : null}
         tier={"excelent"}

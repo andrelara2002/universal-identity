@@ -19,6 +19,8 @@ export default function RegisterController(props) {
   const [documentType, setDocumentType] = React.useState("");
   const [emissionDate, setEmissionDate] = React.useState("");
   const [image, setImage] = React.useState(null);
+  const [modalVisible, setModalVisible] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState(null);
 
   const [loading, setLoading] = React.useState(true);
 
@@ -59,13 +61,17 @@ export default function RegisterController(props) {
     try {
       setLoading(true);
       let genderInt = 0;
+      let documentTypeInt = 0;
+      let birthDateEnUS = '';
+      let emissionDateEnUS = '';
+
       if (gender == 'Female') {
         genderInt = 1;
       } else if (gender == 'Male') {
         genderInt = 2;
       }
 
-      let documentTypeInt = 0;
+
       if (documentType == 'RG') {
         documentTypeInt = 1;
       } else if (documentType == 'CPF') {
@@ -76,12 +82,15 @@ export default function RegisterController(props) {
         documentTypeInt = 4;
       }
 
-      var birthDatePtBR = moment(birthDate, "DD/MM/YYYY");
-      var birthDateEnUS =  birthDatePtBR.format("YYYY-MM-DD");
+      if (birthDate) {
+        let birthDatePtBR = moment(birthDate, "DD/MM/YYYY");
+        birthDateEnUS = birthDatePtBR.format("YYYY-MM-DD");
+      }
 
-      var emissionDatePtBR = moment(emissionDate, "DD/MM/YYYY");
-      var emissionDateEnUS = emissionDatePtBR.format("YYYY-MM-DD");
-
+      if (emissionDate) {
+        let emissionDatePtBR = moment(emissionDate, "DD/MM/YYYY");
+        emissionDateEnUS = emissionDatePtBR.format("YYYY-MM-DD");
+      }
       const data = {
         'nome': name,
         'dataNascimento': birthDateEnUS,
@@ -102,6 +111,14 @@ export default function RegisterController(props) {
         });
 
       console.log(loginResponse.data)
+
+      if (loginResponse.data.succeeded == false) {
+        setLoading(false)
+        setErrorMessage(loginResponse.data.errors.join("\r\n"))
+        setModalVisible(true)
+        return;
+      }
+
       props.navigation.goBack();
     } catch (err) {
       console.log(err)
@@ -138,6 +155,9 @@ export default function RegisterController(props) {
       emissionDate={emissionDate}
       setEmissionDate={setEmissionDate}
       image={image}
+      modalVisible={modalVisible}
+      setModalVisible={setModalVisible}
+      errorMessage={errorMessage}
       onSubmit={handleSignUp}
     />
   );
