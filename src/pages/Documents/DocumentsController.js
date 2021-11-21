@@ -27,11 +27,12 @@ export default function DocumentsController(props) {
     setLoading(true);
     api.get('/Pessoa')
         .then((response) => {
-          const {id, nome,dataNascimento, genero, documentoNumero,  documentoDataEmissao, universalIdBase64} = response.data.data;
+          const {id, dataCadastro, nome,dataNascimento, genero, documentoNumero,  documentoDataEmissao, universalIdBase64, universalId} = response.data.data;
           const gender = ["Others", "Male", "Female"];
           setDocumentForms({
             id: id,
-            registerDate: "-",
+            universalId: universalId,
+            registerDate: moment(new Date(dataCadastro)).format("DD/MM/YYYY"),
             name: nome,
             documentNumber: documentoNumero,
             checkDate:"",
@@ -82,12 +83,7 @@ export default function DocumentsController(props) {
       console.log("Device Incompatible");
     }
   };
-
-  React.useEffect(() => {
-    setLoading(false);
-  });
-
-
+  
   if (loading) {
     return <Loading />;
   }

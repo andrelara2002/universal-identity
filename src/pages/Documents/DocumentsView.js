@@ -35,7 +35,7 @@ export default function DocumentsView(props) {
           <InputWithSubText
             subText={"Unified ID"}
             disabled={true}
-            value={props.form.id}
+            value={props.form.universalId}
             onChangeText={(value) => onChangeForm({id: value}) }
           />
 
@@ -114,8 +114,8 @@ export default function DocumentsView(props) {
                         <InputWithSubText
                             subText={"Unified ID"}
                             disabled={true}
-                            value={props.form.id}
-                            onChangeText={(value) => onChangeForm({id: value}) }
+                            value={props.form.universalId}
+                            onChangeText={(value) => onChangeForm({universalId: value}) }
                         />
                     </Pressable>
                 </View>
