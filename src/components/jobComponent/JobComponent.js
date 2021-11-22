@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from "react-native";
 
 import { getColors } from "../../util/CustomHooks";
 import Spacer from "../spacer/Spacer";
@@ -16,6 +16,7 @@ export default function JobComponent({
   const [expand, setExpand] = React.useState(false);
   const { text, card } = getColors();
   const borderColor = getColors().tiers[tier || "excelent"];
+  const { width, height } = Dimensions.get("window");
   const styles = StyleSheet.create({
     container: {
       backgroundColor: card,
@@ -25,7 +26,7 @@ export default function JobComponent({
       flexDirection: "column",
       marginBottom: 10,
       borderRadius: 10,
-      height: expand ? 180 : 75
+      height: expand ? 250 : 75
     },
     header: {
       flexDirection: "row",

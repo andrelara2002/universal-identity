@@ -56,7 +56,7 @@ export default function NavigationTabScreen() {
 
             <Tab.Navigator
                 initialRouteName="History"
-                activeColor={colors.accent}
+                activeColor={colors.black}
                 inactiveColor={colors.border}
                 barStyle={{ backgroundColor: colors.background }}
             >
@@ -67,7 +67,7 @@ export default function NavigationTabScreen() {
                         tabBarIcon: ({ focused }) => {
                             return (
                                 <Icon
-                                    name={focused ? "ellipse" : "ellipse-outline"}
+                                    name={focused ? "home" : "home-outline"}
                                     type="ionicon"
                                     color={focused ? activeColor : inactiveColor}
                                 />
@@ -80,7 +80,7 @@ export default function NavigationTabScreen() {
                         tabBarIcon: ({ focused }) => {
                             return (
                                 <Icon
-                                    name={focused ? "ellipse" : "ellipse-outline"}
+                                    name={focused ? "document" : "document-outline"}
                                     type="ionicon"
                                     color={focused ? activeColor : inactiveColor}
                                 />
