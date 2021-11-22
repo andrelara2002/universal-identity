@@ -60,7 +60,7 @@ export default function NavigationTabScreen() {
                 inactiveColor={colors.border}
                 barStyle={{ backgroundColor: colors.background }}
             >
-                <Tab.Screen name="History"
+                <Tab.Screen name="Home"
                     component={HomeScreen}
                     // initialParams={{ settings: settings }}
                     options={{
@@ -74,7 +74,7 @@ export default function NavigationTabScreen() {
                             )
                         }
                     }} />
-                <Tab.Screen name="Register" component={DocumentsScreen}
+                <Tab.Screen name="Document" component={DocumentsScreen}
                     // initialParams={{ settings: settings }}
                     options={{
                         tabBarIcon: ({ focused }) => {

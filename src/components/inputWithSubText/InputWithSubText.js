@@ -6,6 +6,7 @@ import SubText from "../subText/SubText";
 import { Input } from "../input/Input";
 import { getColors } from "../../util/CustomHooks";
 import { Picker } from "@react-native-picker/picker";
+import { Icon } from "react-native-elements";
 
 export default function InputWithSubText({
   value,
@@ -17,7 +18,8 @@ export default function InputWithSubText({
   mask,
   picker,
   pickerData,
-  disabled = false
+  disabled = false,
+  copy
 }) {
   const { card, text } = getColors();
 
@@ -50,22 +52,28 @@ export default function InputWithSubText({
           style={styles.Picker}
         >
           {pickerData.map(item =>
-            <Picker.Item label={item} value={item} key={pickerData.indexOf(item)} />
+            <Picker.Item
+              label={item}
+              value={item}
+              key={pickerData.indexOf(item)}
+            />
           )}
         </Picker>
       );
     } else {
       return (
-        <Input
-          mask={mask}
-          value={value}
-          disabled={disabled}
-          onChangeText={onChangeText}
-          secureTextEntry={
-            subText.toLowerCase() == "password" ? true : secureTextEntry
-          }
-          placeholder={placeholder}
-        />
+        <View style={{ flexDirection: "row" }}>
+          <Input
+            mask={mask}
+            value={value}
+            disabled={disabled}
+            onChangeText={onChangeText}
+            secureTextEntry={
+              subText.toLowerCase() == "password" ? true : secureTextEntry
+            }
+            placeholder={placeholder}
+          />
+        </View>
       );
     }
   };

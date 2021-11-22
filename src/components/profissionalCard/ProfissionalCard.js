@@ -6,7 +6,7 @@ import { getColors } from "../../util/CustomHooks";
 export default function ProfissionalCard(props) {
   const { rate, hours, streak } = props;
 
-  const texts = [`${rate}⭐`, `⏰${hours}`, `🔥${streak}`];
+  const texts = [`${rate} ⭐   `, `⏰ ${hours}   `, `🔥 ${streak}`];
   const { card, text, subtext } = getColors();
 
   React.useEffect(() => {

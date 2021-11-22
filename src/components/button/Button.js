@@ -10,7 +10,7 @@ export default function Button({ text, onPress, color, outline }) {
   const styles = StyleSheet.create({
     Button: {
       backgroundColor: outline ? "transparent" : colors.normal,
-      borderWidth: outline ? 1 : 0,
+      borderWidth: 1,
       borderColor: outline ? colors.normal : "transparent",
       justifyContent: "center",
       alignItems: "center",

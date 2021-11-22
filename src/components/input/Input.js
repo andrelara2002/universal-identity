@@ -10,7 +10,7 @@ export function Input({
   secureTextEntry,
   placeholder,
   mask,
-  disabled = false
+  disabled = false,
 }) {
   const { card } = getColors();
 
@@ -37,5 +37,5 @@ export function Input({
       placeholder={placeholder}
       mask={mask}
     />
-  );
+);
 }

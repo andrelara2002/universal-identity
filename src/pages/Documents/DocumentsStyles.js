@@ -1,18 +1,28 @@
 import { StyleSheet } from "react-native";
 
 export default function DocumentsStyles(colors) {
-  const { background } = colors;
+  const { background, card } = colors;
 
   return StyleSheet.create({
     container: {
       flex: 1,
       padding: 20,
-      backgroundColor: background,
+      backgroundColor: background
+    },
+    wrapped: {
+      paddingBottom: 20,
+      paddingTop: 20,
+      borderWidth: 1,
+      borderColor: card,
+      flexDirection: "column",
+      borderRadius: 10,
+      paddingRight: 5,
+      paddingLeft: 5
     },
     containerData: {
-      display: 'flex',
+      display: "flex",
       flexDirection: "row",
-      flexWrap: "wrap",
+      flexWrap: "wrap"
       //gap: 12
     },
     viewContentModal: {
@@ -35,13 +45,14 @@ export default function DocumentsStyles(colors) {
     },
     qrCode: {
       width: 120,
-      height: 120
+      height: 120,
+      borderRadius: 10
     },
     containerImage: {
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems: 'center'
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center"
     },
     dividedView: {
       flexDirection: "row",

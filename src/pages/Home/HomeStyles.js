@@ -41,6 +41,12 @@ export default function HomeStyles(imageBorder) {
       marginBottom: 10,
       borderWidth: 2,
       borderColor: border
+    },
+    recentActivity: {
+      fontSize: 20,
+      color: subtext,
+      marginBottom: 10,
+      fontWeight: "bold"
     }
   });
 

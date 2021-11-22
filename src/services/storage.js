@@ -1,10 +1,11 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import api from "./api";
 // import { NavigationActions } from 'react-navigation'
 
 //login data
 export async function getTokenAsync() {
   try {
-    return JSON.parse(await AsyncStorage.getItem('token'));
+    return JSON.parse(await AsyncStorage.getItem("token"));
   } catch (e) {
     throw e;
   }
@@ -12,7 +13,7 @@ export async function getTokenAsync() {
 
 export async function setTokenAsync(userToken) {
   try {
-    return await AsyncStorage.setItem('token', JSON.stringify(userToken));
+    return await AsyncStorage.setItem("token", JSON.stringify(userToken));
   } catch (e) {
     throw e;
   }
@@ -21,7 +22,7 @@ export async function setTokenAsync(userToken) {
 //user data
 export async function getUserAsync() {
   try {
-    return JSON.parse(await AsyncStorage.getItem('user'));
+    return JSON.parse(await AsyncStorage.getItem("user"));
   } catch (e) {
     throw e;
   }
@@ -35,21 +36,23 @@ export async function setUserAsync(user) {
   }
 }
 
-
 //credentials data
 export async function getCredentialsAsync() {
   try {
-      return JSON.parse(await AsyncStorage.getItem('credentials'));
+    return JSON.parse(await AsyncStorage.getItem("credentials"));
   } catch (e) {
-      throw e;
+    throw e;
   }
 }
 
 export async function setCredentialsAsync(credentials) {
   try {
-      return await AsyncStorage.setItem('credentials', JSON.stringify(credentials));
+    return await AsyncStorage.setItem(
+      "credentials",
+      JSON.stringify(credentials)
+    );
   } catch (e) {
-      throw e;
+    throw e;
   }
 }
 
@@ -57,6 +60,17 @@ export async function deleteStorageAsync() {
   try {
     return await AsyncStorage.clear();
   } catch (e) {
+    throw e;
+  }
+}
+
+export async function getUserFromApi() {
+  try {
+    const user = await api.get("/Pessoa");
+    return user;
+    
+  } catch (e) {
+    console.log("falha ao recuperar usuário");
     throw e;
   }
 }

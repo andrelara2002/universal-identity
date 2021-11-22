@@ -20,7 +20,7 @@ const AppStack = createStackNavigator(
   {
     initialRouteName: 'Splash',
     headerMode: 'none',
-    headerShown: false,
+    headerShown: true,
   },
 );
 
