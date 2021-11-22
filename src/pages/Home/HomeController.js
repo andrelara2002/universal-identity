@@ -11,7 +11,7 @@ export default function HomeController() {
   const colors = useSelector(state => state.colors);
   const borderImage = "Excelent";
 
- 
+
   React.useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -19,7 +19,7 @@ export default function HomeController() {
   });
 
   if (loading) {
-    return <Loading visible={loading} />;
+    return <Loading />;
   }
 
   return (

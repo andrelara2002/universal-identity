@@ -30,7 +30,7 @@ export default function LoginView({
   const styles = LoginStyles(colors);
 
   const redirectSignUp = () => {
-    navigation.navigate("Register");
+    navigation.navigate("SignUp");
   };
 
   return (

@@ -1,4 +1,5 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
+import { Alert } from 'react-native'
 
 import DocumentsView from "./DocumentsView";
 import { Platform } from "react-native";
@@ -13,7 +14,7 @@ export default function DocumentsController(props) {
     registerDate: "",
     name: "",
     documentNumber: "",
-    checkDate:"",
+    checkDate: "",
     emissionDate: "",
     birthDate: "",
     gender: "",
@@ -26,29 +27,32 @@ export default function DocumentsController(props) {
   useEffect(() => {
     setLoading(true);
     api.get('/Pessoa')
-        .then((response) => {
-          const {id, dataCadastro, nome,dataNascimento, genero, documentoNumero,  documentoDataEmissao, universalIdBase64, universalId} = response.data.data;
-          const gender = ["Others", "Male", "Female"];
-          setDocumentForms({
-            id: id,
-            universalId: universalId,
-            registerDate: moment(new Date(dataCadastro)).format("DD/MM/YYYY"),
-            name: nome,
-            documentNumber: documentoNumero,
-            checkDate:"",
-            emissionDate: moment(new Date(documentoDataEmissao)).format("DD/MM/YYYY"),
-            birthDate: moment(new Date(dataNascimento)).format("DD/MM/YYYY"),
-            gender: gender[parseInt(genero)],
-            qrCode: universalIdBase64,
-          })
+      .then((response) => {
+        const { id, dataCadastro, nome, dataNascimento, genero, documentoNumero, documentoDataEmissao, universalIdBase64, universalId } = response.data.data;
+        const gender = ["Others", "Female", "Male"];
+        setDocumentForms({
+          id: id,
+          universalId: universalId,
+          registerDate: moment(new Date(dataCadastro)).format("DD/MM/YYYY"),
+          name: nome,
+          documentNumber: documentoNumero,
+          checkDate: "",
+          emissionDate: moment(new Date(documentoDataEmissao)).format("DD/MM/YYYY"),
+          birthDate: moment(new Date(dataNascimento)).format("DD/MM/YYYY"),
+          gender: gender[parseInt(genero)],
+          qrCode: universalIdBase64,
         })
-        .catch(() => {
-          Toast.show({
-            type: "error",
-            text1: "Data not found"
-          });
-        })
-        .finally(setLoading(false))
+      })
+      .catch((error) => {
+        console.log(error)
+        Alert.alert(
+          'Aviso',
+          error,
+          [{ text: 'OK' }],
+          { cancelable: false },
+        )
+      })
+      .finally(() => setLoading(false))
   }, [setLoading])
 
 
@@ -83,21 +87,21 @@ export default function DocumentsController(props) {
       console.log("Device Incompatible");
     }
   };
-  
+
   if (loading) {
     return <Loading />;
   }
 
   return (
-      <>
-        <DocumentsView
-            getImageFromGallery={getImageFromGallery}
-            form={documentsForm}
-            onChangeForm={setDocumentForms}
-            image={image}
-            onSubmit={() => console.log('teste ok')}
-        />
+    <>
+      <DocumentsView
+        getImageFromGallery={getImageFromGallery}
+        form={documentsForm}
+        onChangeForm={setDocumentForms}
+        image={image}
+        onSubmit={() => console.log('teste ok')}
+      />
 
-      </>
-   );
+    </>
+  );
 }

@@ -13,7 +13,7 @@ export default function DocumentsStyles(colors) {
       display: 'flex',
       flexDirection: "row",
       flexWrap: "wrap",
-      gap: '12px'
+      //gap: 12
     },
     viewContentModal: {
       display: "flex",
@@ -29,13 +29,13 @@ export default function DocumentsStyles(colors) {
       alignItems: "center"
     },
     qrCodeModal: {
-      width: '220px',
-      height: '220px',
-      borderRadius: '10px'
+      width: 220,
+      height: 220,
+      borderRadius: 10
     },
     qrCode: {
-      width: '120px',
-      height: '120px'
+      width: 120,
+      height: 120
     },
     containerImage: {
       display: 'flex',

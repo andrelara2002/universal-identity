@@ -3,7 +3,7 @@ import React from "react";
 import Spinner from "react-native-loading-spinner-overlay";
 import { View, StyleSheet } from "react-native";
 
-export default function Loading({visible}) {
+export default function Loading() {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -16,7 +16,7 @@ export default function Loading({visible}) {
   return (
     <View styles={styles}>
       <Spinner
-        visible={visible}
+        visible={true}
         textContent={""}
         textStyle={{ color: "#FFF" }}
       />

@@ -93,7 +93,7 @@ export default function DocumentsView(props) {
         <Modal
             animationType="slide"
             transparent={true}
-            presentationStyle={'fullScreen'}
+            // presentationStyle={'fullScreen'}
             visible={modalVisible}
             onRequestClose={() => {
                 setModalVisible(!modalVisible);

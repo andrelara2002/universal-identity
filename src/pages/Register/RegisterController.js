@@ -57,7 +57,6 @@ export default function RegisterController(props) {
   };
 
   async function handleSignUp() {
-
     try {
       setLoading(true);
       let genderInt = 0;
@@ -128,7 +127,7 @@ export default function RegisterController(props) {
 
   React.useEffect(() => {
     setLoading(false);
-  });
+  }, [setLoading]);
 
 
   if (loading) {
