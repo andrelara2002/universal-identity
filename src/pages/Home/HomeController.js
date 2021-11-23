@@ -3,7 +3,7 @@ import React from "react";
 import HomeView from "./HomeView";
 import Loading from "../../components/loading/Loading";
 import { useSelector } from "react-redux";
-import { getUserFromApi , getAtividadesFromApi} from "../../services/storage";
+import { getUserFromApi, getAtividadesFromApi } from "../../services/storage";
 import { useDispatch } from "react-redux";
 
 export default function HomeController() {
@@ -36,7 +36,6 @@ export default function HomeController() {
       atividadesData={atividadesData}
       state={state}
       colors={colors}
-      borderImage={borderImage}
     />
   );
 }
