@@ -33,7 +33,5 @@ export default function UserController(props) {
     return <Loading />;
   }
 
-  return (
-    <UserView ediUser={editUser} logout={logout} userData={user.data.data} />
-  );
+  return <UserView ediUser={editUser} logout={logout} userData={user} />;
 }
