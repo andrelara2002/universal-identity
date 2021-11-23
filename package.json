@@ -20,6 +20,7 @@
     "@unimodules/core": "~7.2.0",
     "axios": "^0.24.0",
     "expo": "~43.0.2",
+    "expo-file-system": "~13.0.3",
     "expo-image-picker": "~11.0.3",
     "expo-status-bar": "~1.1.0",
     "fiction-expo-restart": "^1.1.0",
