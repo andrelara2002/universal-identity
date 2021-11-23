@@ -39,7 +39,7 @@ export default function LoginControler(props) {
 
   React.useEffect(() => {
     setLoading(false);
-  }, [[setLoading]]);
+  }, [setLoading]);
 
   if (loading) {
     return <Loading />;

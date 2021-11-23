@@ -19,8 +19,7 @@ export default function RegisterController(props) {
   const [documentNumber, setDocumentNumber] = React.useState("");
   const [documentType, setDocumentType] = React.useState("");
   const [emissionDate, setEmissionDate] = React.useState("");
-  const [image, setImage] = React.useState(null);
-  const [base64Image, setBase64Image] = React.useState("");
+  const [image, setImage] = React.useState("");
   const [modalVisible, setModalVisible] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState(null);
 
@@ -40,19 +39,19 @@ export default function RegisterController(props) {
       }
 
       let pickerResult = await ImagePicker.launchImageLibraryAsync();
-      setImage(pickerResult);
-
-      const base64 = await FileSystem.readAsStringAsync(image.uri, {
-        encoding: "base64"
-      });
-      console.log(base64);
-      setBase64Image(base64);
 
       if (pickerResult.cancelled === true) {
         return;
       }
 
-      setImage(pickerResult.uri);
+      if (Platform.OS !== 'web') {
+        const base64 = await FileSystem.readAsStringAsync(image.uri, {
+          encoding: "base64"
+        });
+        setImage(base64);
+      } else {
+        setImage(pickerResult.uri)
+      }
     } catch (e) {
       console.log(e);
     }
@@ -100,7 +99,7 @@ export default function RegisterController(props) {
         documentoDataEmissao: emissionDateEnUS,
         email: email,
         senha: password,
-        imagemPerfilBase64: base64Image
+        imagemPerfilBase64: image
       };
 
       console.log(data);
