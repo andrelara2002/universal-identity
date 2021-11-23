@@ -3,6 +3,7 @@ import React from "react";
 import RegisterView from "./RegisterView";
 import { Platform, Image } from "react-native";
 import Loading from "../../components/loading/Loading";
+import * as FileSystem from "expo-file-system";
 
 import * as ImagePicker from "expo-image-picker";
 
@@ -19,7 +20,7 @@ export default function RegisterController(props) {
   const [documentType, setDocumentType] = React.useState("");
   const [emissionDate, setEmissionDate] = React.useState("");
   const [image, setImage] = React.useState(null);
-  const [imagem, setImagem] = React.useState(null);
+  const [base64Image, setBase64Image] = React.useState("");
   const [modalVisible, setModalVisible] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState(null);
 
@@ -35,8 +36,14 @@ export default function RegisterController(props) {
         return;
       }
       let pickerResult = await ImagePicker.launchImageLibraryAsync();
-      setImagem(pickerResult.uri);
-      console.log(imagem);
+      setImage(pickerResult);
+
+      const base64 = await FileSystem.readAsStringAsync(image.uri, {
+        encoding: "base64"
+      });
+      console.log(base64);
+      setBase64Image(base64);
+
       if (pickerResult.cancelled === true) {
         return;
       }
@@ -87,7 +94,7 @@ export default function RegisterController(props) {
         documentoDataEmissao: emissionDateEnUS,
         email: email,
         senha: password,
-        imagemPerfilBase64: image || ""
+        imagemPerfilBase64: base64Image
       };
 
       console.log(data);

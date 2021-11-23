@@ -33,14 +33,7 @@ export default function ImageButton({ source, onPress, text, tier }) {
 
   const mountImage = () => {
     if (source) {
-      return (
-        <Image
-          source={{
-            uri: source
-          }}
-          onPress={onPress}
-        />
-      );
+      return <Image source={source} onPress={onPress} style={styles.image} />;
     } else {
       return <View />;
     }
