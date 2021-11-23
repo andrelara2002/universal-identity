@@ -93,7 +93,7 @@ export default function HomeView(props) {
           <Image
             style={styles.image}
             source={{
-              uri: `data:image/png;base64,${userData.imagemPerfilBase64}`
+              uri: `${userData.imagemPerfilBase64}`
             }}
           />
           <View style={{ flexDirection: "column", marginLeft: 20 }}>

@@ -20,7 +20,8 @@ export default function ImageButton({ source, onPress, text, tier }) {
       borderRadius: 50,
       borderWidth: tier ? 2 : 0,
       borderColor: tier ? borderColor : "transparent",
-      marginBottom: 5
+      marginBottom: 5,
+      alignContent: 'center'
     },
     container: {
       flexDirection: "column",
@@ -28,28 +29,25 @@ export default function ImageButton({ source, onPress, text, tier }) {
       alignItems: "center",
       padding: 10,
       margin: 10
+    },
+    imgDentro: {
+      width: 84,
+      height: 84,
+      borderRadius: 50,
     }
   });
 
-  const mountImage = () => {
-    if (source) {
-      return (
+
+  return (
+    <TouchableOpacity style={styles.container} onPress={onPress}>
+      <View style={styles.image}>
         <Image
+          style={styles.imgDentro}
           source={{
             uri: source
           }}
           onPress={onPress}
         />
-      );
-    } else {
-      return <View />;
-    }
-  };
-
-  return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
-      <View style={styles.image}>
-        {mountImage()}
       </View>
       <SubText text={text} />
     </TouchableOpacity>

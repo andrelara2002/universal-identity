@@ -98,7 +98,7 @@ export default function RegisterView(props) {
         source={image}
         tier={"excelent"}
         text={"Change Image"}
-        onPress={() => getImageFromGallery()}
+        onPress={async () => await getImageFromGallery()}
       />
       <InputWithSubText
         subText={"Name"}

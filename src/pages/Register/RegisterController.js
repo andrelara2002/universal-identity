@@ -18,8 +18,7 @@ export default function RegisterController(props) {
   const [documentNumber, setDocumentNumber] = React.useState("");
   const [documentType, setDocumentType] = React.useState("");
   const [emissionDate, setEmissionDate] = React.useState("");
-  const [image, setImage] = React.useState(null);
-  const [imagem, setImagem] = React.useState(null);
+  const [image, setImage] = React.useState("");
   const [modalVisible, setModalVisible] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState(null);
 
@@ -28,18 +27,23 @@ export default function RegisterController(props) {
   const getImageFromGallery = async () => {
     console.log("GETTING IMAGE");
     try {
-      let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
-      if (permissionResult.granted === false) {
-        alert("Permission to access camera roll is required!");
-        return;
+      if (Platform.OS !== 'web') {
+        let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+        if (permissionResult.granted === false) {
+          alert("Permission to access camera roll is required!");
+          return;
+        }
       }
+
       let pickerResult = await ImagePicker.launchImageLibraryAsync();
-      setImagem(pickerResult.uri);
-      console.log(imagem);
+
       if (pickerResult.cancelled === true) {
         return;
       }
+
+      setImage(pickerResult.uri);
     } catch (e) {
       console.log(e);
     }
@@ -94,7 +98,7 @@ export default function RegisterController(props) {
 
       const loginResponse = await api
         .post("/login/create", data)
-        .catch(function(error) {
+        .catch(function (error) {
           return error.response;
         });
 
@@ -118,7 +122,7 @@ export default function RegisterController(props) {
     () => {
       setLoading(false);
     },
-    [setLoading]
+    [setLoading, setImage]
   );
 
   if (loading) {
