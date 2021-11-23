@@ -24,12 +24,28 @@ export default function HomeView(props) {
   const { nome } = userData;
   const navigation = useNavigation();
 
-  const styles = HomeStyles(borderImage);
+  const styles = HomeStyles(
+    setTier(userData.totalAvaliacao, userData.totalHorasTrabalhadas)
+  );
 
   React.useEffect(() => {});
 
+  function setTier(rate, hours) {
+    if (rate > 4) {
+      return "excelent";
+    } else if (rate > 3) {
+      return "great";
+    } else if (rate >= 2) {
+      return "good";
+    } else if (rate <= 1 && hours < 40) {
+      return "good";
+    } else {
+      return "bad";
+    }
+  }
+
   const changeHistory = () => {
-    if (history.length > 0) {
+    if (atividadesData.length > 0) {
       return (
         <SafeAreaView>
           <FlatList
@@ -43,13 +59,16 @@ export default function HomeView(props) {
                 rate={item.avaliacao}
                 description={item.descricao}
                 observations={item.observacao}
-                tier={item.tier}
+                tier={setTier(item.avaliacao)}
               />}
           />
+          <Text style={{ alignSelf: "center", marginTop: 10 }}>
+            Keep doing your best✌️
+          </Text>
         </SafeAreaView>
       );
     } else {
-      return <Text>Ainda nenhum histórico</Text>;
+      return <Text style={{ color: "#000" }}>Ainda nenhum histórico</Text>;
     }
   };
 
@@ -92,10 +111,6 @@ export default function HomeView(props) {
         <Spacer size={20} />
         <Text style={styles.recentActivity}>Recent Activity</Text>
         {changeHistory()}
-        <Button
-          text={"Registrar atividade"}
-          onPress={() => navigation.navigate("RegisterActivity")}
-        />
       </View>
     </ScrollView>
   );
