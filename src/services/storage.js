@@ -67,7 +67,7 @@ export async function deleteStorageAsync() {
 export async function getUserFromApi() {
   try {
     const user = await api.get("/Pessoa");
-    return user;
+    return user.data.data;
   } catch (e) {
     console.log("falha ao recuperar usuário");
     throw e;
@@ -83,9 +83,9 @@ export async function setActivityToApi(data) {
   return user;
 }
 
-export async function getAtividadesFromApi() {
+export async function getAtividadesFromApi(pageNumber) {
 
-  const user = await api.get("/Atividade")
+  const user = await api.get("/Atividade/GetAll?PageNumber=" + pageNumber)
     .catch((error) => {
       console.log({ "GET Atividade-error": error })
     });

@@ -12,20 +12,15 @@ import { useNavigation } from "@react-navigation/native";
 import { getSaudation } from "../../util/InterfaceInfo";
 
 export default function HomeView(props) {
-  const { borderImage, userData, atividadesData } = props;
+  const { borderImage, userData, atividadesData, loadAtividades } = props;
   const { nome } = userData;
   const navigation = useNavigation();
 
   const styles = HomeStyles(borderImage);
 
-  React.useEffect(() => {
-
-  });
-
   const goToUser = () => {
     navigation.navigate("User");
   };
-
 
   const changeHistory = () => {
     if (history.length > 0) {
@@ -33,6 +28,9 @@ export default function HomeView(props) {
         <SafeAreaView>
           <FlatList
             data={atividadesData}
+            onEndReached={loadAtividades}
+            onEndReachedThreshold={0.1}
+            keyExtractor={item => item.id}
             renderItem={({ item }) =>
               <JobComponent
                 key={item.id}
