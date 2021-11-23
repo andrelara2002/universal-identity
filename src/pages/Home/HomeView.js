@@ -12,12 +12,12 @@ import { useNavigation } from "@react-navigation/native";
 import { getSaudation } from "../../util/InterfaceInfo";
 
 export default function HomeView(props) {
-  const { image, borderImage, userData, atividadesData } = props;
+  const { borderImage, userData, atividadesData } = props;
   const { nome } = userData;
   const navigation = useNavigation();
 
   const styles = HomeStyles(borderImage);
- 
+
   React.useEffect(() => {
     
   });
@@ -25,19 +25,7 @@ export default function HomeView(props) {
   const goToUser = () => {
     navigation.navigate("User");
   };
-
-  const mountImage = () => {
-    if (image) {
-      return (
-        <Image style={styles.image} source={userData.imagemPerfilBase64} />
-      );
-      {
-        /* <Image source={{uri: `data:image/gif;base64,${encodedData}`}} /> */
-      }
-    } else {
-      return <View style={styles.replacedImage} />;
-    }
-  };
+  
 
   const changeHistory = () => {
     if (history.length > 0) {
@@ -45,8 +33,6 @@ export default function HomeView(props) {
         <SafeAreaView>
           <FlatList
             data={atividadesData}
-            scrollEnabled={true}
-            scr
             renderItem={({ item }) =>
               <JobComponent
                 key={item.id}
@@ -71,7 +57,11 @@ export default function HomeView(props) {
       <Spacer size={20} />
       <View>
         <TouchableOpacity onPress={goToUser}>
-          {mountImage()}
+        <Image
+          style={styles.image}
+          source={{
+            uri: `data:image/png;base64,${userData.imagemPerfilBase64}`
+          }} />
         </TouchableOpacity>
         <Text style={styles.saudation}>
           {getSaudation()}
@@ -82,7 +72,7 @@ export default function HomeView(props) {
         <ProfissionalCard
           rate={userData.totalAvaliacao}
           hours={userData.totalHorasTrabalhadas}
-          /* streak={"2 Weeks"} */
+        /* streak={"2 Weeks"} */
         />
         <Spacer size={20} />
         <Text style={styles.recentActivity}>Recent Activity</Text>
