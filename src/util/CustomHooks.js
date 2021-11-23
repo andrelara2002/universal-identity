@@ -1,6 +1,4 @@
-import React from "react";
-
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 export function getColors() {
   const colors = useSelector(state => state.colors);

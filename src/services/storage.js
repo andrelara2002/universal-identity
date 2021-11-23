@@ -68,11 +68,19 @@ export async function getUserFromApi() {
   try {
     const user = await api.get("/Pessoa");
     return user;
-    
   } catch (e) {
     console.log("falha ao recuperar usuário");
     throw e;
   }
+}
+
+export async function setActivityToApi(data) {
+  console.log(data)
+  const user = await api
+    .post("/Atividade/Create", data)
+    .then(res => res.data)
+    .catch(err => console.log(err.response));
+  return user;
 }
 
 // NavigationService

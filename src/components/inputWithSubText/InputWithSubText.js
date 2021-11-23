@@ -18,8 +18,7 @@ export default function InputWithSubText({
   mask,
   picker,
   pickerData,
-  disabled = false,
-  copy
+  disabled
 }) {
   const { card, text } = getColors();
 
@@ -40,7 +39,7 @@ export default function InputWithSubText({
       height: 50,
       width: "100%",
       color: text
-    },
+    }
   });
   const setTipe = () => {
     if (picker) {

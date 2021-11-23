@@ -10,7 +10,7 @@ export function Input({
   secureTextEntry,
   placeholder,
   mask,
-  disabled = false,
+  disabled
 }) {
   const { card } = getColors();
 

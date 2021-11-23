@@ -1,17 +1,20 @@
 import React from "react";
 //Native Components
-import { View, Text, Image, FlatList } from "react-native";
+import { View, Text, Image, FlatList, TouchableOpacity } from "react-native";
 //Custom Components
 import HomeStyles from "./HomeStyles";
 import ProfissionalCard from "../../components/profissionalCard/ProfissionalCard";
 import Spacer from "../../components/spacer/Spacer";
 import JobComponent from "../../components/jobComponent/JobComponent";
+import Button from "../../components/button/Button";
+import { useNavigation } from "@react-navigation/native";
 //Functions and Hooks
 import { getSaudation } from "../../util/InterfaceInfo";
 
 export default function HomeView(props) {
   const { image, borderImage, userData } = props;
   const { nome } = userData;
+  const navigation = useNavigation();
 
   const styles = HomeStyles(borderImage);
   const history = [
@@ -31,6 +34,10 @@ export default function HomeView(props) {
   React.useEffect(() => {
     console.log(userData);
   });
+
+  const goToUser = () => {
+    navigation.navigate("User");
+  };
 
   const mountImage = () => {
     if (image) {
@@ -72,7 +79,9 @@ export default function HomeView(props) {
     <View style={styles.container}>
       <Spacer size={20} />
       <View>
-        {mountImage()}
+        <TouchableOpacity onPress={goToUser}>
+          {mountImage()}
+        </TouchableOpacity>
         <Text style={styles.saudation}>
           {getSaudation()}
         </Text>
@@ -81,12 +90,16 @@ export default function HomeView(props) {
         </Text>
         <ProfissionalCard
           rate={userData.totalAvaliacao}
-          hours={20}
-          streak={"2 Weeks"}
+          hours={userData.totalHorasTrabalhadas}
+          /* streak={"2 Weeks"} */
         />
         <Spacer size={20} />
         <Text style={styles.recentActivity}>Recent Activity</Text>
         {changeHistory()}
+        <Button
+          text={"Registrar atividade"}
+          onPress={() => navigation.navigate("RegisterActivity")}
+        />
       </View>
     </View>
   );
