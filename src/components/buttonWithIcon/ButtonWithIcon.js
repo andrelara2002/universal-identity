@@ -13,7 +13,7 @@ export default function ButtonWithIcon(props) {
     text,
     type = "normal",
     iconName,
-    iconSize = 30,
+    iconSize = 20,
     iconType = "ionicon"
   } = props;
 
@@ -45,11 +45,11 @@ export default function ButtonWithIcon(props) {
   });
 
   return (
-    <TouchableOpacity style={styles.button}>
+    <TouchableOpacity style={styles.button} onPress={onPress}>
       <Icon
         name={iconName}
         type={iconType}
-        color={text}
+        color={outline ? baseColor : colors.text}
         size={iconSize}
         style={styles.icon}
       />

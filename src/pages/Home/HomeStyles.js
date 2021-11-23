@@ -16,7 +16,6 @@ export default function HomeStyles(imageBorder) {
       padding: 20
     },
     saudation: {
-      marginTop: 10,
       fontSize: 26,
       color: subtext
     },

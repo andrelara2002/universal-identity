@@ -1,34 +1,39 @@
 import React from "react";
 
-import { StackActions, NavigationActions } from "react-navigation";
+import { Restart } from "fiction-expo-restart";
 import { deleteStorageAsync } from "../../services/storage";
-
+import Loading from "../../components/loading/Loading";
 import { getUserFromApi } from "../../services/storage";
-
 import UserView from "./UserView";
 
 export default function UserController(props) {
   const [loading, setLoading] = React.useState(true);
+  const [user, setUser] = React.useState(null);
 
   React.useEffect(() => {
-    setLoading(false);
+    fetchUser();
   });
 
+  const fetchUser = async () => {
+    const user = await getUserFromApi();
+    setUser(user);
+    setLoading(false);
+  };
+
   const editUser = () => {
-    getUserFromApi().then(user => {
-      props.navigation.navigate("EditUser", { user: user });
-    });
+    props.navigation.navigate("EditUser", { user: user });
   };
 
-  const logout = () => {
-    deleteStorageAsync();
-    props.navigation.dispatch(
-      StackActions.reset({
-        index: 0,
-        actions: [NavigationActions.navigate({ routeName: "SignIn" })]
-      })
-    );
+  const logout = async () => {
+    await deleteStorageAsync();
+    Restart();
   };
 
-  return <UserView ediUser={editUser} logout={logout} />;
+  if (loading) {
+    return <Loading />;
+  }
+
+  return (
+    <UserView ediUser={editUser} logout={logout} userData={user.data.data} />
+  );
 }

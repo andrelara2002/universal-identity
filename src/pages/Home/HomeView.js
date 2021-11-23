@@ -35,10 +35,6 @@ export default function HomeView(props) {
     console.log(userData);
   });
 
-  const goToUser = () => {
-    navigation.navigate("User");
-  };
-
   const mountImage = () => {
     if (image) {
       return (
@@ -79,15 +75,18 @@ export default function HomeView(props) {
     <View style={styles.container}>
       <Spacer size={20} />
       <View>
-        <TouchableOpacity onPress={goToUser}>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
           {mountImage()}
-        </TouchableOpacity>
-        <Text style={styles.saudation}>
-          {getSaudation()}
-        </Text>
-        <Text style={styles.name}>
-          {nome}
-        </Text>
+          <View style={{ flexDirection: "column", marginLeft: 20 }}>
+            <Text style={styles.saudation}>
+              {getSaudation()}
+            </Text>
+            <Text style={styles.name}>
+              {nome}
+            </Text>
+          </View>
+        </View>
+        <Spacer size={20} />
         <ProfissionalCard
           rate={userData.totalAvaliacao}
           hours={userData.totalHorasTrabalhadas}

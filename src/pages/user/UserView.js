@@ -9,23 +9,25 @@ import Spacer from "../../components/spacer/Spacer";
 
 export default function UserView(props) {
   const styles = UserStyles();
-  const { editUser, logout } = props;
+  const { editUser, logout, userData } = props;
   return (
     <View style={styles.container}>
       <Spacer size={20} />
-      <ProfissionalCard />
+      <ProfissionalCard
+        rate={userData.totalAvaliacao}
+        hours={userData.totalHorasTrabalhadas}
+      />
       <ButtonWithIcon
-        iconName="md-create"
-        iconSize={30}
+        iconName="create-outline"
         onPress={editUser}
         text={"Editar Perfil"}
       />
       <ButtonWithIcon
         iconName="exit-outline"
-        iconSize={30}
         type="declined"
         onPress={logout}
         text={"Logout"}
+        outline={true}
       />
     </View>
   );
