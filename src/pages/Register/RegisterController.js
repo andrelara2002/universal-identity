@@ -45,7 +45,7 @@ export default function RegisterController(props) {
       }
 
       if (Platform.OS !== 'web') {
-        const base64 = await FileSystem.readAsStringAsync(image.uri, {
+        const base64 = await FileSystem.readAsStringAsync(pickerResult.uri, {
           encoding: "base64"
         });
         setImage(base64);
