@@ -19,13 +19,13 @@ export default function HomeView(props) {
   const styles = HomeStyles(borderImage);
 
   React.useEffect(() => {
-    
+
   });
 
   const goToUser = () => {
     navigation.navigate("User");
   };
-  
+
 
   const changeHistory = () => {
     if (history.length > 0) {
@@ -52,22 +52,32 @@ export default function HomeView(props) {
     }
   };
 
+  const getName = () => {
+    const indexOf = nome.indexOf(' ');
+    console.log({ 'indexOf': indexOf })
+    if (indexOf > 0) {
+      return nome.substr(0, nome.indexOf(' '));
+    } else {
+      return nome;
+    }
+  }
+
   return (
     <ScrollView style={styles.container}>
       <Spacer size={20} />
       <View>
         <TouchableOpacity onPress={goToUser}>
-        <Image
-          style={styles.image}
-          source={{
-            uri: `data:image/png;base64,${userData.imagemPerfilBase64}`
-          }} />
+          <Image
+            style={styles.image}
+            source={{
+              uri: `data:image/png;base64,${userData.imagemPerfilBase64}`
+            }} />
         </TouchableOpacity>
         <Text style={styles.saudation}>
           {getSaudation()}
         </Text>
         <Text style={styles.name}>
-          {nome}
+          {getName()}
         </Text>
         <ProfissionalCard
           rate={userData.totalAvaliacao}
