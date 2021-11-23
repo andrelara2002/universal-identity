@@ -83,6 +83,17 @@ export async function setActivityToApi(data) {
   return user;
 }
 
+export async function getAtividadesFromApi() {
+
+  const user = await api.get("/Atividade")
+    .catch((error) => {
+      console.log({ "GET Atividade-error": error })
+    });
+
+  console.log({ "GET Atividade-response-data": user.data.data })
+  return user.data.data;
+}
+
 // NavigationService
 
 // let navigator;
