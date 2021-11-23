@@ -13,8 +13,6 @@ export default function HomeController() {
   const [userData, setUserData] = React.useState(null);
   const [atividadesData, setAtividadesData] = React.useState(null);
 
-  const borderImage = "Excelent";
-
   const getData = async () => {
     setUserData(await getUserFromApi());
     setAtividadesData(await getAtividadesFromApi());
