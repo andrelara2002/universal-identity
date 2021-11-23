@@ -1,6 +1,6 @@
 import React from "react";
 //Native Components
-import { View, Text, Image, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, Image, FlatList, TouchableOpacity, SafeAreaView, ScrollView } from "react-native";
 //Custom Components
 import HomeStyles from "./HomeStyles";
 import ProfissionalCard from "../../components/profissionalCard/ProfissionalCard";
@@ -12,27 +12,14 @@ import { useNavigation } from "@react-navigation/native";
 import { getSaudation } from "../../util/InterfaceInfo";
 
 export default function HomeView(props) {
-  const { image, borderImage, userData } = props;
+  const { image, borderImage, userData, atividadesData } = props;
   const { nome } = userData;
   const navigation = useNavigation();
 
   const styles = HomeStyles(borderImage);
-  const history = [
-    {
-      id: 1,
-      title: "Time de limpeza",
-      place: "Restaurante do Mané",
-      hours: "10",
-      rate: 5,
-      description:
-        "Ajuda no time de limpeza, do restaurante, trabalhando em time juntamente com outros profissionais",
-      observations:
-        "“Profissional se dedicou muito para trabalhar em equipes, e se conseguiu êxito em todas as atividades, com excêlencia!”"
-    }
-  ];
-
+ 
   React.useEffect(() => {
-    console.log(userData);
+    
   });
 
   const goToUser = () => {
@@ -55,20 +42,24 @@ export default function HomeView(props) {
   const changeHistory = () => {
     if (history.length > 0) {
       return (
-        <FlatList
-          data={history}
-          renderItem={({ item }) =>
-            <JobComponent
-              key={item.id}
-              title={item.title}
-              place={item.place}
-              hours={item.hours}
-              rate={item.rate}
-              description={item.description}
-              observations={item.observations}
-              tier={item.tier}
-            />}
-        />
+        <SafeAreaView>
+          <FlatList
+            data={atividadesData}
+            scrollEnabled={true}
+            scr
+            renderItem={({ item }) =>
+              <JobComponent
+                key={item.id}
+                title={item.titulo}
+                place={item.local}
+                hours={item.horasTrabalhadas}
+                rate={item.avaliacao}
+                description={item.descricao}
+                observations={item.observacao}
+                tier={item.tier}
+              />}
+          />
+        </SafeAreaView>
       );
     } else {
       return <Text>Ainda nenhum histórico</Text>;
@@ -76,7 +67,7 @@ export default function HomeView(props) {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Spacer size={20} />
       <View>
         <TouchableOpacity onPress={goToUser}>
@@ -101,6 +92,6 @@ export default function HomeView(props) {
           onPress={() => navigation.navigate("RegisterActivity")}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 }
