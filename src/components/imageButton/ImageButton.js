@@ -33,14 +33,21 @@ export default function ImageButton({ source, onPress, text, tier }) {
 
   const mountImage = () => {
     if (source) {
-      return <Image source={source} onPress={onPress} />;
+      return (
+        <Image
+          source={{
+            uri: source
+          }}
+          onPress={onPress}
+        />
+      );
     } else {
       return <View />;
     }
   };
 
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.image}>
         {mountImage()}
       </View>

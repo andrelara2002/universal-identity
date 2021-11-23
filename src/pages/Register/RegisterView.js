@@ -1,7 +1,7 @@
 import React from "react";
 //Default Components
 import { View, ScrollView, Dimensions } from "react-native";
-import { Alert, Modal, StyleSheet, Text, Pressable } from 'react-native';
+import { Alert, Modal, StyleSheet, Text, Pressable } from "react-native";
 
 //Custom Components
 import InputWithSubText from "../../components/inputWithSubText/InputWithSubText";
@@ -14,7 +14,13 @@ import ImageButton from "../../components/imageButton/ImageButton";
 import { getColors } from "../../util/CustomHooks";
 
 export default function RegisterView(props) {
-  const { getImageFromGallery, image, onSubmit, modalVisible, errorMessage } = props;
+  const {
+    getImageFromGallery,
+    image,
+    onSubmit,
+    modalVisible,
+    errorMessage
+  } = props;
   const colors = getColors();
   const styles = RegisterStyles(colors);
   const [documentTypeMask, setDocumentTypeMask] = React.useState("");
@@ -71,13 +77,17 @@ export default function RegisterView(props) {
         visible={modalVisible}
         onRequestClose={() => {
           props.setModalVisible(!modalVisible);
-        }}>
+        }}
+      >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>{errorMessage}</Text>
+            <Text style={styles.modalText}>
+              {errorMessage}
+            </Text>
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => props.setModalVisible(!modalVisible)}>
+              onPress={() => props.setModalVisible(!modalVisible)}
+            >
               <Text style={styles.textStyle}> Ok </Text>
             </Pressable>
           </View>
@@ -85,10 +95,10 @@ export default function RegisterView(props) {
       </Modal>
 
       <ImageButton
-        source={image ? image.uri : null}
+        source={image}
         tier={"excelent"}
         text={"Change Image"}
-        onPress={getImageFromGallery}
+        onPress={() => getImageFromGallery()}
       />
       <InputWithSubText
         subText={"Name"}
