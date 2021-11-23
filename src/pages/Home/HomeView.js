@@ -1,6 +1,14 @@
 import React from "react";
 //Native Components
-import { View, Text, Image, FlatList, TouchableOpacity, SafeAreaView, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  FlatList,
+  TouchableOpacity,
+  SafeAreaView,
+  ScrollView
+} from "react-native";
 //Custom Components
 import HomeStyles from "./HomeStyles";
 import ProfissionalCard from "../../components/profissionalCard/ProfissionalCard";
@@ -16,14 +24,28 @@ export default function HomeView(props) {
   const { nome } = userData;
   const navigation = useNavigation();
 
-  const styles = HomeStyles(borderImage);
+  const styles = HomeStyles(
+    setTier(userData.totalAvaliacao, userData.totalHorasTrabalhadas)
+  );
 
-  const goToUser = () => {
-    navigation.navigate("User");
-  };
+  React.useEffect(() => {});
+
+  function setTier(rate, hours) {
+    if (rate > 4) {
+      return "excelent";
+    } else if (rate > 3) {
+      return "great";
+    } else if (rate >= 2) {
+      return "good";
+    } else if (rate <= 1 && hours < 40) {
+      return "good";
+    } else {
+      return "bad";
+    }
+  }
 
   const changeHistory = () => {
-    if (history.length > 0) {
+    if (atividadesData.length > 0) {
       return (
         <SafeAreaView>
           <FlatList
@@ -40,55 +62,58 @@ export default function HomeView(props) {
                 rate={item.avaliacao}
                 description={item.descricao}
                 observations={item.observacao}
-                tier={item.tier}
+                tier={setTier(item.avaliacao)}
               />}
           />
+          <Text style={{ alignSelf: "center", marginTop: 10 }}>
+            Keep doing your best✌️
+          </Text>
         </SafeAreaView>
       );
     } else {
-      return <Text>Ainda nenhum histórico</Text>;
+      return <Text style={{ color: "#000" }}>Ainda nenhum histórico</Text>;
     }
   };
 
   const getName = () => {
-    const indexOf = nome.indexOf(' ');
-    console.log({ 'indexOf': indexOf })
+    const indexOf = nome.indexOf(" ");
+    console.log({ indexOf: indexOf });
     if (indexOf > 0) {
-      return nome.substr(0, nome.indexOf(' '));
+      return nome.substr(0, nome.indexOf(" "));
     } else {
       return nome;
     }
-  }
+  };
 
   return (
     <ScrollView style={styles.container}>
       <Spacer size={20} />
       <View>
-        <TouchableOpacity onPress={goToUser}>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Image
             style={styles.image}
             source={{
               uri: `data:image/png;base64,${userData.imagemPerfilBase64}`
-            }} />
-        </TouchableOpacity>
-        <Text style={styles.saudation}>
-          {getSaudation()}
-        </Text>
-        <Text style={styles.name}>
-          {getName()}
-        </Text>
+            }}
+          />
+          <View style={{ flexDirection: "column", marginLeft: 20 }}>
+            <Text style={styles.saudation}>
+              {getSaudation()}
+            </Text>
+            <Text style={styles.name}>
+              {getName()}
+            </Text>
+          </View>
+        </View>
+        <Spacer size={20} />
         <ProfissionalCard
           rate={userData.totalAvaliacao}
           hours={userData.totalHorasTrabalhadas}
-        /* streak={"2 Weeks"} */
+          /* streak={"2 Weeks"} */
         />
         <Spacer size={20} />
         <Text style={styles.recentActivity}>Recent Activity</Text>
         {changeHistory()}
-        <Button
-          text={"Registrar atividade"}
-          onPress={() => navigation.navigate("RegisterActivity")}
-        />
       </View>
     </ScrollView>
   );

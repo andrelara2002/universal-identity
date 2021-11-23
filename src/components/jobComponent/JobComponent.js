@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Dimensions
+} from "react-native";
 
 import { getColors } from "../../util/CustomHooks";
 import Spacer from "../spacer/Spacer";
@@ -30,18 +36,19 @@ export default function JobComponent({
     },
     header: {
       flexDirection: "row",
-      justifyContent: "space-between",
       paddingBottom: 10,
       borderBottomWidth: 1,
       borderBottomColor: "#F3F3F3"
     },
     leftHeader: {
       flexDirection: "column",
-      alignItems: "flex-start"
+      alignItems: "flex-start",
+      width: "65%"
     },
     rightHeader: {
       flexDirection: "column",
-      alignItems: "flex-start"
+      alignItems: "flex-start",
+      width: "35%"
     },
     title: {
       fontSize: 18,

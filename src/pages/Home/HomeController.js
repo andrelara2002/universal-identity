@@ -13,9 +13,8 @@ export default function HomeController() {
   const colors = useSelector(state => state.colors);
   const [userData, setUserData] = React.useState(null);
   const [atividadesData, setAtividadesData] = React.useState([]);
-  const [page, setPage] = React.useState(1);
-  const borderImage = "Excelent";
-
+  const [page, setPage] = React.useState(1)
+  
   const getData = async () => {
     setUserData(await getUserFromApi());
     setAtividadesData(await getAtividadesFromApi(1));
@@ -55,7 +54,6 @@ export default function HomeController() {
       // loadAtividades={loadAtividades}
       state={state}
       colors={colors}
-      borderImage={borderImage}
     />
   );
 }
