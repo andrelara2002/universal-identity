@@ -33,14 +33,19 @@ export default function SearchProfessionalController(props) {
             .finally(() => setLoading(false));
     }
 
+
+
     const handleChange = (value) => {
-        setSearchTextInput(value);
         getProfessional(value);
     };
 
     const debouncedResults = useMemo(() => {
         return debounce(handleChange, 500);
     }, []);
+
+    useEffect(() => {
+        debouncedResults(searchText);
+    }, [searchText, debouncedResults])
 
     useEffect(() => {
         return () => {
@@ -52,7 +57,7 @@ export default function SearchProfessionalController(props) {
     <>
       <SearchProfessionalView
         form={searchText}
-        onChangeForm={debouncedResults}
+        onChangeForm={(value) => setSearchTextInput(value)}
       />
 
       <ListProfessionalView

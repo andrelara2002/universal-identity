@@ -24,11 +24,11 @@ export default function RegisterActivityController(props) {
       observacao: observations,
       horasTrabalhadas: hours,
       avaliacao: rating,
-      pessoaId: props.params.pessoaId
+      pessoaId: props.route.params.pessoaId
     };
     const response = await setActivityToApi(data);
     if (response) {
-      navigation.navigate("Home2");
+      navigation.goBack();
     } else {
       alert("Erro ao cadastrar atividade");
     }
