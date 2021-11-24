@@ -1,7 +1,8 @@
 import { StyleSheet } from "react-native";
+import {getColors} from "../../util/CustomHooks";
 
 export default function ListProfessionalStyles(colors) {
-    const { background, card, text, border,  } = colors;
+    const { background, card, text, border, buttons } = colors;
 
     return StyleSheet.create({
         container: {
@@ -73,6 +74,13 @@ export default function ListProfessionalStyles(colors) {
             width: 60,
             height: 60,
             borderRadius: 50
+        },
+        button: {
+            backgroundColor: 'black',
+            fontSize: 20,
+            textAlign: "center",
+            fontWeight: "bold",
+            color: colors.text
         }
     });
 }

@@ -23,7 +23,6 @@ export default function Button({ text, onPress, color, outline }) {
     Text: {
       fontSize: 20,
       textAlign: "center",
-
       fontWeight: "bold",
       color: outline ? colors.normal : colors.text
     }

@@ -24,7 +24,7 @@ export default function RegisterActivityController(props) {
       observacao: observations,
       horasTrabalhadas: hours,
       avaliacao: rating,
-      pessoaId: 1
+      pessoaId: props.params.pessoaId
     };
     const response = await setActivityToApi(data);
     if (response) {

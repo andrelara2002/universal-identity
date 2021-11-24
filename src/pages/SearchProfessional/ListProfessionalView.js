@@ -1,12 +1,8 @@
 import React, { useEffect } from "react";
-import {View, Text, Image, FlatList, ScrollView, TouchableOpacity} from "react-native";
+import {View, Text, Image, FlatList, ScrollView, TouchableOpacity, Button} from "react-native";
 import {getColors} from "../../util/CustomHooks";
-import SearchProfessionalStyles from "./SearchProfessionalStyles";
 import ListProfessionalStyles from "./ListProfessionalStyles";
-import {Avatar, Divider} from "react-native-paper";
-import moment from "moment";
 import ButtonWithIcon from "../../components/buttonWithIcon/ButtonWithIcon";
-import { useNavigation } from "@react-navigation/native";
 
 export default function ListProfessionalView(props) {
     const { onClickInsertRegister, list } = props;
@@ -52,13 +48,15 @@ export default function ListProfessionalView(props) {
                                 </View>
 
                                 {item.id === expanded && (
-                                    <View>
-                                        <ButtonWithIcon
-                                            type="declined"
-                                            onPress={() => props.navigate(item.id)}
-                                            text={"Insert Register"}
-                                            outline={false}
-                                        />
+                                    <View style={{...styles.containerRow, justifyContent: 'flex-end', alignItems: 'flex-end'}}>
+                                        <View style={{width: 100}}>
+                                            <Button
+
+                                                color={colors.buttons.normal}
+                                                onPress={() => props.navigate(item.id)}
+                                                title="Register"
+                                            />
+                                        </View>
                                     </View>
                                 )}
                             </TouchableOpacity>
