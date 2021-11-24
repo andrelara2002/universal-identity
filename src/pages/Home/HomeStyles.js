@@ -17,19 +17,23 @@ export default function HomeStyles(imageBorder) {
     },
     saudation: {
       fontSize: 26,
-      color: subtext
+      alignSelf: "center",
+      color: text
     },
     name: {
       color: text,
-      fontSize: 42,
-      fontWeight: "bold"
+      fontSize: 36,
+      fontWeight: "bold",
+      lineHeight: 40,
+      marginBottom: 0
     },
     image: {
-      width: 100,
-      height: 100,
+      width: 60,
+      height: 60,
       borderRadius: 50,
       marginBottom: 10,
       borderWidth: 2,
+      alignSelf: "center",
       borderColor: border
     },
     replacedImage: {
@@ -46,6 +50,10 @@ export default function HomeStyles(imageBorder) {
       color: subtext,
       marginBottom: 10,
       fontWeight: "bold"
+    },
+    date: {
+      fontSize: 14,
+      color: subtext
     }
   });
 

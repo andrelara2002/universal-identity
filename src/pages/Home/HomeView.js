@@ -5,7 +5,6 @@ import {
   Text,
   Image,
   FlatList,
-  TouchableOpacity,
   SafeAreaView,
   ScrollView
 } from "react-native";
@@ -88,6 +87,8 @@ export default function HomeView(props) {
   return (
     <ScrollView style={styles.container}>
       <Spacer size={20} />
+      <Text style={styles.saudation}>Hello!</Text>
+      <Spacer size={40} />
       <View>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Image
@@ -97,15 +98,13 @@ export default function HomeView(props) {
             }}
           />
           <View style={{ flexDirection: "column", marginLeft: 20 }}>
-            <Text style={styles.saudation}>
-              {getSaudation()}
-            </Text>
             <Text style={styles.name}>
               {getName()}
             </Text>
+            <Text style={styles.date}>Tuesday, November 13</Text>
           </View>
         </View>
-        <Spacer size={20} />
+        <Spacer size={40} />
         <ProfissionalCard
           rate={userData.totalAvaliacao}
           hours={userData.totalHorasTrabalhadas}

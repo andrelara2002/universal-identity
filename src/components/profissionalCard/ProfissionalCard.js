@@ -62,33 +62,42 @@ export default function ProfissionalCard(props) {
       alignItems: "center",
       justifyContent: "flex-start",
       backgroundColor: buttons.normal,
-      height: 30,
+      height: 35,
       marginRight: 5
     },
     buttonLabel: {
       color: card,
-      fontSize: 10,
+      fontSize: 10
     },
     Image: {
-      width: "50%",
-      height: "50%",
+      width: 130,
+      height: 130,
       position: "absolute",
+      resizeMode: "contain",
       bottom: 0,
-      right: 20,
+      right: 0,
       zIndex: 10
     }
   });
 
-  React.useEffect(() => {
-    console.log(require(`../../../assets/${profissional.name}.png`));
-  });
+  const setRequireImage = () => {
+    switch (profissional.name) {
+      case "excelent":
+        return require("../../../assets/excelent.png");
+      case "great":
+        return require("../../../assets/great.png");
+      case "good":
+        return require("../../../assets/good.png");
+      case "bad":
+        return require("../../../assets/bad.png");
+      default:
+        return require("../../../assets/excelent.png");
+    }
+  };
 
   return (
-    <View style={{ height: 200, width: "100%" }}>
-      <Image
-        style={styles.Image}
-        source={require(`../../../assets/${profissional.name}.png`)}
-      />
+    <View style={{ height: 200, width: "100%", padding: 0 }}>
+      <Image style={styles.Image} source={setRequireImage()} />
       <View style={styles.container}>
         <Text style={styles.saudation}>You're a</Text>
         {separeProfissional()}
@@ -97,7 +106,7 @@ export default function ProfissionalCard(props) {
             <Icon
               name={"time-outline"}
               type={"ionicon"}
-              color={card}
+              color={actualColor}
               size={10}
               style={{
                 marginRight: 10
@@ -109,7 +118,7 @@ export default function ProfissionalCard(props) {
             <Icon
               name={"star-outline"}
               type={"ionicon"}
-              color={card}
+              color={actualColor}
               size={12}
               style={{
                 marginRight: 10

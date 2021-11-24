@@ -17,6 +17,7 @@ export default function UserView(props) {
         rate={userData.totalAvaliacao}
         hours={userData.totalHorasTrabalhadas}
       />
+      <Spacer size={20} />
       <ButtonWithIcon
         iconName="create-outline"
         onPress={editUser}

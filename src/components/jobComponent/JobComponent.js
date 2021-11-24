@@ -26,8 +26,8 @@ export default function JobComponent({
   const styles = StyleSheet.create({
     container: {
       backgroundColor: card,
-      borderWidth: 1,
-      borderColor: borderColor,
+      borderLeftWidth: 5,
+      borderLeftColor: borderColor,
       padding: 20,
       flexDirection: "column",
       marginBottom: 10,
