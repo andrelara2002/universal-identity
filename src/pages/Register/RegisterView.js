@@ -58,16 +58,21 @@ export default function RegisterView(props) {
       <InputWithSubText
         subText={"Name"}
         value={props.name}
+        returnKeyType={"next"}
         onChangeText={props.setName}
       />
       <InputWithSubText
         value={props.password}
         subText={"Password"}
+        keyboardType={"numeric"}
+        returnKeyType={"next"}
         onChangeText={props.setPassword}
       />
       <InputWithSubText
         value={props.email}
         subText={"Email (Optional)"}
+        keyboardType={"email-address"}
+        returnKeyType={"next"}
         onChangeText={props.setEmail}
       />
       <View style={styles.dividedView}>
@@ -76,6 +81,8 @@ export default function RegisterView(props) {
           subText={"Birth Date"}
           mask={[/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
           size={"48%"}
+          keyboardType={"numeric"}
+          returnKeyType={"next"}
           onChangeText={props.setBirthDate}
         />
         <InputWithSubText
@@ -90,6 +97,8 @@ export default function RegisterView(props) {
       <InputWithSubText
         value={props.documentNumber}
         subText={"Document Number"}
+        keyboardType={"numeric"}
+        returnKeyType={"next"}
         onChangeText={props.setDocumentNumber}
       />
       <View style={styles.dividedView}>
@@ -106,6 +115,8 @@ export default function RegisterView(props) {
           subText={"Emission Date"}
           onChangeText={props.setEmissionDate}
           mask={[/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]}
+          keyboardType={"numeric"}
+          returnKeyType={"done"}
           size={"45%"}
         />
       </View>

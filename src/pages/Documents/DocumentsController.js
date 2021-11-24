@@ -73,8 +73,6 @@ export default function DocumentsController(props) {
           quality: 1
         });
 
-        console.log(result);
-
         if (!result.cancelled) {
           setImage(result.uri);
         }
@@ -99,7 +97,6 @@ export default function DocumentsController(props) {
         form={documentsForm}
         onChangeForm={setDocumentForms}
         image={image}
-        onSubmit={() => console.log('teste ok')}
       />
 
     </>

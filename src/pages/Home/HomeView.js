@@ -55,7 +55,6 @@ export default function HomeView(props) {
 
   const getName = () => {
     const indexOf = nome.indexOf(" ");
-    console.log({ indexOf: indexOf });
     if (indexOf > 0) {
       return nome.substr(0, nome.indexOf(" "));
     } else {

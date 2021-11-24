@@ -18,7 +18,9 @@ export default function InputWithSubText({
   mask,
   picker,
   pickerData,
-  disabled
+  disabled,
+  keyboardType,
+  returnKeyType
 }) {
   const { card, text } = getColors();
 
@@ -66,6 +68,8 @@ export default function InputWithSubText({
             mask={mask}
             value={value}
             disabled={disabled}
+            keyboardType={keyboardType}
+            returnKeyType={returnKeyType}
             onChangeText={onChangeText}
             secureTextEntry={
               subText.toLowerCase() == "password" ? true : secureTextEntry

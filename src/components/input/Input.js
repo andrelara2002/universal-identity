@@ -10,7 +10,9 @@ export function Input({
   secureTextEntry,
   placeholder,
   mask,
-  disabled
+  disabled,
+  keyboardType,
+  returnKeyType
 }) {
   const { card } = getColors();
 
@@ -27,6 +29,15 @@ export function Input({
       width: "100%"
     }
   });
+
+  function getKeyboardType() {
+    return keyboardType || 'default'
+  }
+
+  function getReturnKeyType() {
+    return returnKeyType || 'done'
+  }
+
   return (
     <MaskInput
       disabled={disabled}
@@ -36,6 +47,9 @@ export function Input({
       secureTextEntry={secureTextEntry}
       placeholder={placeholder}
       mask={mask}
+      autoFocus={true}
+      keyboardType={getKeyboardType()}
+      returnKeyType={getReturnKeyType()}
     />
-);
+  );
 }

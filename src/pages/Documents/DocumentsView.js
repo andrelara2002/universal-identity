@@ -19,15 +19,10 @@ import LabelWithSubText from "../../components/labelWithSubtext/LabelWithSubtext
 import { Clipboard } from "react-native";
 
 export default function DocumentsView(props) {
-  const { getImageFromGallery, image, onSubmit } = props;
   const colors = getColors();
   const styles = DocumentsStyles(colors);
   const [modalVisible, setModalVisible] = React.useState(false);
   const [copied, setCopied] = React.useState(false);
-
-  const onChangeForm = value => {
-    props.onChangeForm({ ...props.form, ...value });
-  };
 
   return (
     <ScrollView style={styles.container}>
@@ -50,56 +45,42 @@ export default function DocumentsView(props) {
           height={Dimensions.get("window").height > 600 ? 60 : 50}
         />
 
-        <InputWithSubText
+        <LabelWithSubText
           subText={"Register Date"}
-          disabled={true}
-          value={props.form.registerDate}
-          onChangeText={value => onChangeForm({ registerDate: value })}
+          label={props.form.registerDate}
         />
 
-        <InputWithSubText
+        <LabelWithSubText
           subText={"Document Number"}
-          disabled={true}
-          value={props.form.documentNumber}
-          onChangeText={value => onChangeForm({ documentNumber: value })}
+          label={props.form.documentNumber}
         />
 
         <View style={styles.containerData}>
           <View style={styles.dividedView}>
-            <InputWithSubText
+            <LabelWithSubText
               subText={"Check Date"}
-              size={"48%"}
-              disabled={true}
-              value={props.form.checkDate}
-              onChangeText={value => onChangeForm({ checkDate: value })}
+              width={"48%"}
+              label={props.form.checkDate}
             />
 
-            <InputWithSubText
+            <LabelWithSubText
               subText={"Birth Date"}
-              size={"48%"}
-              disabled={true}
-              value={props.form.emissionDate}
-              onChangeText={value => onChangeForm({ emissionDate: value })}
+              width={"48%"}
+              label={props.form.emissionDate}
             />
           </View>
 
           <View style={styles.dividedView}>
-            <InputWithSubText
+            <LabelWithSubText
               subText={"Emission Date"}
-              size={"48%"}
-              disabled={true}
-              value={props.form.emissionDate}
-              onChangeText={value => onChangeForm({ emissionDate: value })}
+              width={"48%"}
+              label={props.form.emissionDate}
             />
 
-            <InputWithSubText
-              value={props.form.gender}
+            <LabelWithSubText
+              label={props.form.gender}
+              width={"48%"}
               subText={"Gender"}
-              disabled={true}
-              size={"48%"}
-              onChangeText={value => onChangeForm({ gender: value })}
-              picker={true}
-              pickerData={["Others", "Male", "Female"]}
             />
           </View>
         </View>
@@ -108,7 +89,6 @@ export default function DocumentsView(props) {
       <Modal
         animationType="slide"
         transparent={true}
-        // presentationStyle={'fullScreen'}
         visible={modalVisible}
         onRequestClose={() => {
           setModalVisible(!modalVisible);
@@ -126,12 +106,9 @@ export default function DocumentsView(props) {
                   uri: `data:image/png;base64,${props.form.qrCode}`
                 }}
               />
-              <InputWithSubText
+              <LabelWithSubText
                 subText={"Unified ID"}
-                disabled={true}
-                copy={true}
-                value={props.form.universalId}
-                onChangeText={value => onChangeForm({ universalId: value })}
+                label={props.form.universalId}
               />
               <Button
                 text={copied ? "Copied" : "Copy"}

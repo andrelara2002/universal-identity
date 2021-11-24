@@ -45,11 +45,15 @@ export default function LoginView({
       <InputWithSubText
         subText={"Document Number"}
         value={username}
+        keyboardType={"numeric"}
+        returnKeyType={"next"}
         onChangeText={setUsername}
       />
       <InputWithSubText
         subText={"Password"}
         value={password}
+        keyboardType={"numeric"}
+        returnKeyType={"next"}
         onChangeText={setPassword}
       />
       <Divisor height={50} color={colors.subText} />

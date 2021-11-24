@@ -1,6 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import api from "./api";
-// import { NavigationActions } from 'react-navigation'
 
 //login data
 export async function getTokenAsync() {
@@ -75,7 +74,6 @@ export async function getUserFromApi() {
 }
 
 export async function setActivityToApi(data) {
-  console.log(data)
   const user = await api
     .post("/Atividade/Create", data)
     .then(res => res.data)
@@ -93,20 +91,3 @@ export async function getAtividadesFromApi(pageNumber) {
   console.log({ "GET Atividade-response-data": user.data.data })
   return user.data.data;
 }
-
-// NavigationService
-
-// let navigator;
-
-// export function setTopLevelNavigator(navigatorRef) {
-//   navigator = navigatorRef;
-// }
-
-// export function navigate(routeName, params) {
-//   navigator.dispatch(
-//     NavigationActions.navigate({
-//       routeName,
-//       params,
-//     }),
-//   );
-// }

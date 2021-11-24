@@ -110,9 +110,7 @@ export default function RegisterController(props) {
           return error.response;
         });
 
-      console.log(loginResponse.data);
-
-      if (loginResponse.data.succeeded == false) {
+        if (loginResponse.data.succeeded == false) {
         setLoading(false);
         setErrorMessage(loginResponse.data.errors.join("\r\n"));
         setModalVisible(true);
