@@ -28,7 +28,7 @@ export default function HomeView(props) {
     setTier(userData.totalAvaliacao, userData.totalHorasTrabalhadas)
   );
 
-  React.useEffect(() => { });
+  React.useEffect(() => {});
 
   function setTier(rate, hours) {
     if (rate > 4) {
@@ -64,9 +64,10 @@ export default function HomeView(props) {
 
   return (
     <FlatList
+      style={styles.container}
       data={atividadesData}
       keyExtractor={item => item.id}
-      ListHeaderComponent={() => (
+      ListHeaderComponent={() =>
         <View>
           <Spacer size={20} />
           <Text style={styles.saudation}>Hello!</Text>
@@ -83,20 +84,21 @@ export default function HomeView(props) {
                 <Text style={styles.name}>
                   {getName()}
                 </Text>
-                <Text style={styles.date}>{getDate()}</Text>
+                <Text style={styles.date}>
+                  {getDate()}
+                </Text>
               </View>
             </View>
             <Spacer size={40} />
             <ProfissionalCard
               rate={userData.totalAvaliacao}
               hours={userData.totalHorasTrabalhadas}
-            /* streak={"2 Weeks"} */
+              /* streak={"2 Weeks"} */
             />
             <Spacer size={20} />
             <Text style={styles.recentActivity}>Recent Activity</Text>
           </View>
-        </View>
-      )}
+        </View>}
       renderItem={({ item }) =>
         <JobComponent
           key={item.id}
@@ -109,7 +111,5 @@ export default function HomeView(props) {
           tier={setTier(item.avaliacao)}
         />}
     />
-
-
   );
 }

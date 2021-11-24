@@ -67,7 +67,9 @@ export default function JobComponent({
       borderBottomLeftRadius: 10,
       height: expand ? 250 : 80,
       backgroundColor: borderColor,
-      position: "absolute"
+      position: "absolute",
+      left: 0,
+      top: 0
     }
   });
 

@@ -1,29 +1,27 @@
 import React from "react";
 
-import { createAppContainer } from 'react-navigation'
-import { createStackNavigator } from 'react-navigation-stack'
-
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
 
 import SplashScreen from "./pages/Splash/SplashController";
 import LoginScreen from "./pages/Login/LoginController";
 import RegisterScreen from "./pages/Register/RegisterController";
-import NavigationTabScreen from './pages/NavigationTab/NavigationTabScreen'
-
+import NavigationTabScreen from "./pages/NavigationTab/NavigationTabScreen";
 
 const AppStack = createStackNavigator(
   {
-    Splash: SplashScreen,
-    SignIn: LoginScreen,
+    Splash: { screen: SplashScreen, navigationOptions: { header: null } },
+    SignIn: { screen: LoginScreen, navigationOptions: { header: null } },
     SignUp: RegisterScreen,
-    App: NavigationTabScreen,
+    App: { screen: NavigationTabScreen, navigationOptions: { header: null } }
   },
   {
-    initialRouteName: 'Splash',
-    headerMode: 'none',
-    headerShown: true,
-  },
+    initialRouteName: "Splash",
+    headerMode: "screen",
+    headerShown: true
+  }
 );
 
-const RootStackContainer = createAppContainer(AppStack)
+const RootStackContainer = createAppContainer(AppStack);
 
-export default RootStackContainer
+export default RootStackContainer;
