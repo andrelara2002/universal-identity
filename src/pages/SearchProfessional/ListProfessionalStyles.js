@@ -40,11 +40,11 @@ export default function ListProfessionalStyles(colors) {
         },
         containerColumn: {
             display: 'flex',
-            flexDirection: 'columm'
+            flexDirection: 'column'
         },
         cardView: {
             display: 'flex',
-            flexDirection: 'columm',
+            flexDirection: 'column',
             backgroundColor: card,
             width: '100%',
             padding: 10,
@@ -69,7 +69,8 @@ export default function ListProfessionalStyles(colors) {
             color: text,
         },
         image: {
-            border: border,
+            borderColor: border,
+            borderWidth: 1,
             margin: 0,
             width: 60,
             height: 60,

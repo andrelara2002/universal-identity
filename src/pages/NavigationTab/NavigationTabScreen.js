@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import Home from "../Home/HomeController";
 import Documents from "../Documents/DocumentsController";
 import RegisterActivity from "../RegisterActivity/RegisterActivityController";
-import User from "../User/UserController";
+import User from "../user/UserController";
 import SearchProfessional from "../SearchProfessional/SearchProfessionalController";
 
 const Tab = createMaterialBottomTabNavigator();
