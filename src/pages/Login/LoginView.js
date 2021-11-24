@@ -43,7 +43,7 @@ export default function LoginView({
       {!!errorMessage && <Error errorMessage={errorMessage} />}
 
       <InputWithSubText
-        subText={"Email"}
+        subText={"Document Number"}
         value={username}
         onChangeText={setUsername}
       />

@@ -10,6 +10,7 @@ import Home from "../Home/HomeController";
 import Documents from "../Documents/DocumentsController";
 import RegisterActivity from "../RegisterActivity/RegisterActivityController";
 import User from "../User/UserController";
+import SearchProfessional from "../SearchProfessional/SearchProfessionalController";
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -19,12 +20,14 @@ export default function NavigationTabScreen() {
   const activeColor = colors.black;
   const inactiveColor = colors.border;
 
- /*  function HomeScreen() {
+
+
+ function SearchScreen() {
     return (
-      <Stack.Navigator initialRouteName="Home2">
+      <Stack.Navigator initialRouteName="Search2">
         <Stack.Screen
-          name="Home2"
-          component={Home}
+          name="Search2"
+          component={SearchProfessional}
           options={{
             headerShown: false
           }}
@@ -38,7 +41,7 @@ export default function NavigationTabScreen() {
         />
       </Stack.Navigator>
     );
-  } */
+  }
 
   return (
     <NavigationContainer theme={{ colors: { background: colors.background } }}>
@@ -103,6 +106,23 @@ export default function NavigationTabScreen() {
             }
           }}
         />
+
+          <Tab.Screen
+              name="Search"
+              component={SearchScreen}
+              options={{
+                  tabBarIcon: ({ focused }) => {
+                      return (
+                          <Icon
+                              name={focused ? "search" : "search-outline"}
+                              type="ionicon"
+                              color={focused ? activeColor : inactiveColor}
+                          />
+                      );
+                  }
+              }}
+          />
+
       </Tab.Navigator>
     </NavigationContainer>
   );

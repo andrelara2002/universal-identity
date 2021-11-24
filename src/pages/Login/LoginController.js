@@ -14,7 +14,7 @@ export default function LoginControler(props) {
   async function autenticate() {
     setLoading(true);
     await api.post('/login', {
-      email: username,
+      documentoNumero: username,
       senha: password
     })
       .then((response) => {
@@ -22,7 +22,7 @@ export default function LoginControler(props) {
         setTokenAsync({ token: response.data.token });
 
         setCredentialsAsync({
-          email: username,
+          documentoNumero: username,
           senha: password
         });
 

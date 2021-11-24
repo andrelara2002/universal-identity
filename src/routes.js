@@ -8,6 +8,7 @@ import SplashScreen from "./pages/Splash/SplashController";
 import LoginScreen from "./pages/Login/LoginController";
 import RegisterScreen from "./pages/Register/RegisterController";
 import NavigationTabScreen from './pages/NavigationTab/NavigationTabScreen'
+import SearchProfessional from "./pages/SearchProfessional/SearchProfessionalController";
 
 
 const AppStack = createStackNavigator(
