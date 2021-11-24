@@ -103,6 +103,10 @@ export default function JobComponent({
     return stars.join("");
   };
 
+  const capitalize = str => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+
   return (
     <TouchableOpacity
       style={styles.container}
@@ -112,7 +116,7 @@ export default function JobComponent({
       <View style={styles.header}>
         <View style={styles.leftHeader}>
           <Text style={styles.title}>
-            {title}
+            {capitalize(title)}
           </Text>
           <Text style={styles.place}>
             {place}
