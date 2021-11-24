@@ -18,19 +18,33 @@ export default function SplashController(props) {
 
     async function handleUserNextScreen() {
         const userToken = await getTokenAsync();
-        if (userToken) {
-            await refreshToken();
+        try {
+
+
+            if (userToken) {
+                await refreshToken();
+                const resetAction = StackActions.reset({
+                    index: 0,
+                    actions: [NavigationActions.navigate({ routeName: 'App' })],
+                })
+
+                props.navigation.dispatch(resetAction)
+            } else {
+                const resetAction = StackActions.reset({
+                    index: 0,
+                    actions: [NavigationActions.navigate({ routeName: 'SignIn' })],
+                })
+                props.navigation.dispatch(resetAction)
+            }
+        }
+        catch (error) {
+            console.log(error);
+            
             const resetAction = StackActions.reset({
                 index: 0,
                 actions: [NavigationActions.navigate({ routeName: 'App' })],
             })
 
-            props.navigation.dispatch(resetAction)
-        } else {
-            const resetAction = StackActions.reset({
-                index: 0,
-                actions: [NavigationActions.navigate({ routeName: 'SignIn' })],
-            })
             props.navigation.dispatch(resetAction)
         }
     }
