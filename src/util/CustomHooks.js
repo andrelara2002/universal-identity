@@ -12,14 +12,14 @@ export function getLanguage() {
 
 export function setTier(rate, hours) {
   if (rate > 4) {
-    return "Excelent level of qualification";
+    return { name: "excelent", text: "Excelent Rate Profissional" };
   } else if (rate > 3) {
-    return "Great level of qualification";
+    return { name: "great", text: "Great level Profissional" };
   } else if (rate >= 2) {
-    return "Good level of qualification";
+    return { name: "good", text: "Good level Profissional" };
   } else if (rate <= 1 && hours < 40) {
-    return "Novice profissional";
+    return { name: "good", text: "Novice Profissional" };
   } else {
-    return "Average";
+    return { name: "bad", text: "Low level Profissional" };
   }
 }
