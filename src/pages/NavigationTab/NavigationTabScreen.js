@@ -22,7 +22,7 @@ export default function NavigationTabScreen() {
 
 
 
- function SearchScreen() {
+  function SearchScreen() {
     return (
       <Stack.Navigator initialRouteName="Search2">
         <Stack.Screen
@@ -61,7 +61,6 @@ export default function NavigationTabScreen() {
         <Tab.Screen
           name="Home"
           component={Home}
-          // initialParams={{ settings: settings }}
           options={{
             tabBarIcon: ({ focused }) => {
               return (
@@ -78,7 +77,6 @@ export default function NavigationTabScreen() {
         <Tab.Screen
           name="Document"
           component={Documents}
-          // initialParams={{ settings: settings }}
           options={{
             tabBarIcon: ({ focused }) => {
               return (
@@ -91,6 +89,23 @@ export default function NavigationTabScreen() {
             }
           }}
         />
+
+        <Tab.Screen
+          name="Search"
+          component={SearchScreen}
+          options={{
+            tabBarIcon: ({ focused }) => {
+              return (
+                <Icon
+                  name={focused ? "search" : "search-outline"}
+                  type="ionicon"
+                  color={focused ? activeColor : inactiveColor}
+                />
+              );
+            }
+          }}
+        />
+
         <Tab.Screen
           name="Settings"
           component={User}
@@ -106,22 +121,6 @@ export default function NavigationTabScreen() {
             }
           }}
         />
-
-          <Tab.Screen
-              name="Search"
-              component={SearchScreen}
-              options={{
-                  tabBarIcon: ({ focused }) => {
-                      return (
-                          <Icon
-                              name={focused ? "search" : "search-outline"}
-                              type="ionicon"
-                              color={focused ? activeColor : inactiveColor}
-                          />
-                      );
-                  }
-              }}
-          />
 
       </Tab.Navigator>
     </NavigationContainer>

@@ -28,7 +28,7 @@ export default function HomeView(props) {
     setTier(userData.totalAvaliacao, userData.totalHorasTrabalhadas)
   );
 
-  React.useEffect(() => {});
+  React.useEffect(() => { });
 
   function setTier(rate, hours) {
     if (rate > 4) {
@@ -43,37 +43,6 @@ export default function HomeView(props) {
       return "bad";
     }
   }
-
-  const changeHistory = () => {
-    if (atividadesData.length > 0) {
-      return (
-        <SafeAreaView>
-          <FlatList
-            data={atividadesData}
-            onEndReached={loadAtividades}
-            onEndReachedThreshold={0.1}
-            keyExtractor={item => item.id}
-            renderItem={({ item }) =>
-              <JobComponent
-                key={item.id}
-                title={item.titulo}
-                place={item.local}
-                hours={item.horasTrabalhadas}
-                rate={item.avaliacao}
-                description={item.descricao}
-                observations={item.observacao}
-                tier={setTier(item.avaliacao)}
-              />}
-          />
-          <Text style={{ alignSelf: "center", marginTop: 10 }}>
-            Keep doing your best✌️
-          </Text>
-        </SafeAreaView>
-      );
-    } else {
-      return <Text style={{ color: "#000" }}>Ainda nenhum histórico</Text>;
-    }
-  };
 
   const getDate = () => {
     const date = new Date();
@@ -95,35 +64,53 @@ export default function HomeView(props) {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <Spacer size={20} />
-      <Text style={styles.saudation}>Hello!</Text>
-      <Spacer size={40} />
-      <View>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Image
-            style={styles.image}
-            source={{
-              uri: `${userData.imagemPerfilBase64}`
-            }}
-          />
-          <View style={{ flexDirection: "column", marginLeft: 20 }}>
-            <Text style={styles.name}>
-              {getName()}
-            </Text>
-            <Text style={styles.date}>{getDate()}</Text>
+    <FlatList
+      data={atividadesData}
+      keyExtractor={item => item.id}
+      ListHeaderComponent={() => (
+        <View>
+          <Spacer size={20} />
+          <Text style={styles.saudation}>Hello!</Text>
+          <Spacer size={40} />
+          <View>
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <Image
+                style={styles.image}
+                source={{
+                  uri: `${userData.imagemPerfilBase64}`
+                }}
+              />
+              <View style={{ flexDirection: "column", marginLeft: 20 }}>
+                <Text style={styles.name}>
+                  {getName()}
+                </Text>
+                <Text style={styles.date}>{getDate()}</Text>
+              </View>
+            </View>
+            <Spacer size={40} />
+            <ProfissionalCard
+              rate={userData.totalAvaliacao}
+              hours={userData.totalHorasTrabalhadas}
+            /* streak={"2 Weeks"} */
+            />
+            <Spacer size={20} />
+            <Text style={styles.recentActivity}>Recent Activity</Text>
           </View>
         </View>
-        <Spacer size={40} />
-        <ProfissionalCard
-          rate={userData.totalAvaliacao}
-          hours={userData.totalHorasTrabalhadas}
-          /* streak={"2 Weeks"} */
-        />
-        <Spacer size={20} />
-        <Text style={styles.recentActivity}>Recent Activity</Text>
-        {changeHistory()}
-      </View>
-    </ScrollView>
+      )}
+      renderItem={({ item }) =>
+        <JobComponent
+          key={item.id}
+          title={item.titulo}
+          place={item.local}
+          hours={item.horasTrabalhadas}
+          rate={item.avaliacao}
+          description={item.descricao}
+          observations={item.observacao}
+          tier={setTier(item.avaliacao)}
+        />}
+    />
+
+
   );
 }
