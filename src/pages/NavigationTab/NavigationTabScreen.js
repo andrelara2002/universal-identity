@@ -19,7 +19,7 @@ export default function NavigationTabScreen() {
   const activeColor = colors.black;
   const inactiveColor = colors.border;
 
-  function HomeScreen() {
+ /*  function HomeScreen() {
     return (
       <Stack.Navigator initialRouteName="Home2">
         <Stack.Screen
@@ -38,21 +38,8 @@ export default function NavigationTabScreen() {
         />
       </Stack.Navigator>
     );
-  }
+  } */
 
-  function DocumentsScreen() {
-    return (
-      <Stack.Navigator initialRouteName="Documents2">
-        <Stack.Screen
-          name="Documents2"
-          component={Documents}
-          options={{
-            headerShown: false
-          }}
-        />
-      </Stack.Navigator>
-    );
-  }
   return (
     <NavigationContainer theme={{ colors: { background: colors.background } }}>
       <StatusBar
@@ -70,7 +57,7 @@ export default function NavigationTabScreen() {
       >
         <Tab.Screen
           name="Home"
-          component={HomeScreen}
+          component={Home}
           // initialParams={{ settings: settings }}
           options={{
             tabBarIcon: ({ focused }) => {
@@ -87,7 +74,7 @@ export default function NavigationTabScreen() {
 
         <Tab.Screen
           name="Document"
-          component={DocumentsScreen}
+          component={Documents}
           // initialParams={{ settings: settings }}
           options={{
             tabBarIcon: ({ focused }) => {
