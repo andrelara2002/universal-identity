@@ -1,3 +1,4 @@
+import { round } from "lodash";
 import React from "react";
 
 import { Text, View, StyleSheet, Image } from "react-native";
@@ -118,7 +119,7 @@ export default function ProfissionalCard(props) {
               }}
             />
             <Text style={styles.buttonLabel}>
-              {rate}
+              {round(rate, 2)}
             </Text>
           </View>
         </View>

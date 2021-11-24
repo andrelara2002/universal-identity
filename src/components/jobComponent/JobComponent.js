@@ -30,7 +30,7 @@ export default function JobComponent({
       flexDirection: "column",
       marginBottom: 10,
       borderRadius: 10,
-      height: expand ? 250 : 80,
+      height: expand ? 250 : 90,
       marginBottom: 15
     },
     header: {
@@ -48,7 +48,7 @@ export default function JobComponent({
       width: "35%"
     },
     title: {
-      fontSize: 24,
+      fontSize: 18,
       fontWeight: "bold",
       color: text
     },
@@ -65,7 +65,7 @@ export default function JobComponent({
       width: 5,
       borderTopLeftRadius: 10,
       borderBottomLeftRadius: 10,
-      height: expand ? 250 : 80,
+      height: expand ? 250 : 90,
       backgroundColor: borderColor,
       position: "absolute",
       left: 0,
@@ -104,7 +104,7 @@ export default function JobComponent({
   };
 
   const capitalize = str => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+    return str.charAt(0).toUpperCase() + str.toLowerCase().slice(1);
   };
 
   return (
