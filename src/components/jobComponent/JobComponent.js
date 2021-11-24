@@ -26,19 +26,16 @@ export default function JobComponent({
   const styles = StyleSheet.create({
     container: {
       backgroundColor: card,
-      borderLeftWidth: 5,
-      borderLeftColor: borderColor,
       padding: 20,
       flexDirection: "column",
       marginBottom: 10,
       borderRadius: 10,
-      height: expand ? 250 : 75
+      height: expand ? 250 : 80,
+      marginBottom: 15
     },
     header: {
       flexDirection: "row",
-      paddingBottom: 10,
-      borderBottomWidth: 1,
-      borderBottomColor: "#F3F3F3"
+      paddingBottom: 10
     },
     leftHeader: {
       flexDirection: "column",
@@ -51,7 +48,7 @@ export default function JobComponent({
       width: "35%"
     },
     title: {
-      fontSize: 18,
+      fontSize: 24,
       fontWeight: "bold",
       color: text
     },
@@ -63,6 +60,14 @@ export default function JobComponent({
       fontSize: 18,
       fontWeight: "bold",
       color: text
+    },
+    lateralBar: {
+      width: 5,
+      borderTopLeftRadius: 10,
+      borderBottomLeftRadius: 10,
+      height: expand ? 250 : 80,
+      backgroundColor: borderColor,
+      position: "absolute"
     }
   });
 
@@ -70,6 +75,9 @@ export default function JobComponent({
     if (expand) {
       return (
         <View>
+          <Text style={{ fontSize: 12, fontWeight: "bold", color: text }}>
+            Comments:{" "}
+          </Text>
           <Text>
             {description}
           </Text>
@@ -78,7 +86,7 @@ export default function JobComponent({
             Observations:
           </Text>
           <Text style={{ fontSize: 12, fontStyle: "italic", color: text }}>
-            {observations}
+            {observations ? observations : "No observations"}
           </Text>
         </View>
       );
@@ -98,6 +106,7 @@ export default function JobComponent({
       style={styles.container}
       onPress={() => setExpand(!expand)}
     >
+      <View style={styles.lateralBar} />
       <View style={styles.header}>
         <View style={styles.leftHeader}>
           <Text style={styles.title}>
@@ -116,6 +125,8 @@ export default function JobComponent({
           </Text>
         </View>
       </View>
+
+      <Spacer size={10} />
       {makeExpand()}
     </TouchableOpacity>
   );

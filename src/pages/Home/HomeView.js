@@ -17,6 +17,7 @@ import Button from "../../components/button/Button";
 import { useNavigation } from "@react-navigation/native";
 //Functions and Hooks
 import { getSaudation } from "../../util/InterfaceInfo";
+import { getMonthText, getWeekText } from "../../util/CustomHooks";
 
 export default function HomeView(props) {
   const { borderImage, userData, atividadesData, loadAtividades } = props;
@@ -74,6 +75,15 @@ export default function HomeView(props) {
     }
   };
 
+  const getDate = () => {
+    const date = new Date();
+    const weekDay = date.getDay();
+    const week = getWeekText(weekDay);
+    const month = getMonthText(weekDay);
+
+    return `${week}, ${month} ${weekDay}`;
+  };
+
   const getName = () => {
     const indexOf = nome.indexOf(" ");
     console.log({ indexOf: indexOf });
@@ -101,7 +111,7 @@ export default function HomeView(props) {
             <Text style={styles.name}>
               {getName()}
             </Text>
-            <Text style={styles.date}>Tuesday, November 13</Text>
+            <Text style={styles.date}>{getDate()}</Text>
           </View>
         </View>
         <Spacer size={40} />

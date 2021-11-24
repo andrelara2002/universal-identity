@@ -23,51 +23,6 @@ export default function RegisterView(props) {
   } = props;
   const colors = getColors();
   const styles = RegisterStyles(colors);
-  const [documentTypeMask, setDocumentTypeMask] = React.useState("");
-  const [documentMask, setDocumentMask] = React.useState(true);
-
-  const handleDocumentType = text => {
-    props.setDocumentType(text);
-    switch (text) {
-      case "CPF":
-        setDocumentTypeMask([
-          /\d/,
-          /\d/,
-          /\d/,
-          ".",
-          /\d/,
-          /\d/,
-          /\d/,
-          ".",
-          /\d/,
-          /\d/,
-          /\d/,
-          "-",
-          /\d/,
-          /\d/
-        ]);
-        break;
-      case "RG":
-        setDocumentTypeMask([
-          /\d/,
-          /\d/,
-          /\d/,
-          /\d/,
-          /\d/,
-          /\d/,
-          "-",
-          /\d/,
-          /\d/,
-          /\d/
-        ]);
-        break;
-      default:
-      case "Passport":
-        setDocumentMask(false);
-        break;
-    }
-    console.log(documentTypeMask);
-  };
 
   return (
     <ScrollView style={styles.container}>
@@ -136,13 +91,12 @@ export default function RegisterView(props) {
         value={props.documentNumber}
         subText={"Document Number"}
         onChangeText={props.setDocumentNumber}
-        mask={documentTypeMask}
       />
       <View style={styles.dividedView}>
         <InputWithSubText
           value={props.documentType}
           subText={"Document Type"}
-          onChangeText={x => handleDocumentType(x)}
+          onChangeText={props.setDocumentType}
           picker={true}
           pickerData={["Others", "RG", "CPF", "CNH", "Passport"]}
           size={"45%"}

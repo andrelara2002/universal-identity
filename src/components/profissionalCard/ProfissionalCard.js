@@ -13,22 +13,15 @@ export default function ProfissionalCard(props) {
 
   const separeProfissional = () => {
     let _text = profissional.text.replace("Profissional", "");
-    const originalArray = _text.split(" ");
-    let string = "";
 
-    for (let i = 0; i < originalArray.length; i++) {
-      string += originalArray[i];
-    }
-
-    const processedArray = [originalArray, "Profissional"];
-
-    return processedArray.map((item, index) => {
-      return (
-        <Text key={index} style={styles.title}>
-          {item}
+    return (
+      <View>
+        <Text style={styles.title}>
+          {_text}
         </Text>
-      );
-    });
+        <Text style={styles.title}>Profissional</Text>
+      </View>
+    );
   };
 
   const styles = StyleSheet.create({
