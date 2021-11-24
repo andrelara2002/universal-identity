@@ -14,7 +14,8 @@ export default function ButtonWithIcon(props) {
     type = "normal",
     iconName,
     iconSize = 20,
-    iconType = "ionicon"
+    iconType = "ionicon",
+    iconColor = colors.text
   } = props;
 
   const baseColor = colors[type];
@@ -49,7 +50,7 @@ export default function ButtonWithIcon(props) {
       <Icon
         name={iconName}
         type={iconType}
-        color={outline ? baseColor : colors.text}
+        color={outline ? baseColor : iconColor}
         size={iconSize}
         style={styles.icon}
       />
