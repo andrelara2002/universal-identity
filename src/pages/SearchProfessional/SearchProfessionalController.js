@@ -57,7 +57,7 @@ export default function SearchProfessionalController(props) {
 
       <ListProfessionalView
         list={list}
-        navigate={(id) => props.navigation.navigate('RegisterActivity', {pessoaId: id})}
+        navigate={(id) => props.navigation.navigate('RegisterActivity', { pessoaId: id })}
       />
     </>
   );
