@@ -10,10 +10,10 @@ import NavigationTabScreen from "./pages/NavigationTab/NavigationTabScreen";
 
 const AppStack = createStackNavigator(
   {
-    Splash: { screen: SplashScreen, navigationOptions: { header: null } },
-    SignIn: { screen: LoginScreen, navigationOptions: { header: null } },
+    Splash: { screen: SplashScreen, navigationOptions: { headerShown: false } },
+    SignIn: { screen: LoginScreen, navigationOptions: { headerShown: false } },
     SignUp: RegisterScreen,
-    App: { screen: NavigationTabScreen, navigationOptions: { header: null } }
+    App: { screen: NavigationTabScreen, navigationOptions: { headerShown: false } }
   },
   {
     initialRouteName: "Splash",
