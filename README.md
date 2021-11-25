@@ -1,5 +1,5 @@
 # Universal Identity
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/andrelara2002/universal-identity-front/blob/master/Pitch%20Universal%20Identity_Prancheta%201.jpg)
 front (mobile/web) do Universal Identity
 
 [Back-end (api)](https://github.com/joseBarreto/universal-identity-api)
