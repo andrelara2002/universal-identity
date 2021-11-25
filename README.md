@@ -1,4 +1,5 @@
-# universal-identity-front
+# Universal Identity
+![alt text](http://url/to/img.png)
 front (mobile/web) do Universal Identity
 
 [Back-end (api)](https://github.com/joseBarreto/universal-identity-api)
